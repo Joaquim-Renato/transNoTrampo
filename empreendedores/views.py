@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Empreendedor
 
 # Create your views here.
@@ -70,6 +70,17 @@ def edit_empreendedor(request, id):
         return redirect('lista_empreendedores')
     
     return render(request, 'editar.html', {'empreendedor': empreendedor})
+
+from django.shortcuts import get_object_or_404
+
+def delete_empreendedor(request, id):
+    empreendedor = get_object_or_404(Empreendedor, id=id)
+    if request.method == 'POST':
+        empreendedor.delete()
+        return redirect('lista_empreendedores')
+    return render(request, 'delete.html', {'empreendedor': empreendedor})
+
+
 
 
 
