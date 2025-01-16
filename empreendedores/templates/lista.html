@@ -8,13 +8,13 @@
 <body>
     <h1>Lista de Empreendedores</h1>
     <ul>
-        {% for empreendedor in empreendedor %}
+        {% for lista_empreendedores in lista_empreendedores %}
 
 
             <li>
                 {{ empreendedor.nome }} - {{ empreendedor.servico }}
             </li>
-            
+
         {% endfor %}
     </ul>
     <a href="{% url 'cadastrar_empreendedor' %}">Cadastrar Novo Empreendedor</a>
