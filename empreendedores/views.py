@@ -7,7 +7,7 @@ def cadastrar_empreendedor(request):
     if request.method == 'POST':
         nome = request.POST['nome']
         idade = request.POST['idade']
-        identidadedegenero = request.POST['identidadedegenero']
+        identidadegenero = request.POST['identidadegenero']
         email = request.POST['email']
         telefone = request.POST['telefone']
         servico = request.POST['servico']
@@ -15,7 +15,7 @@ def cadastrar_empreendedor(request):
 
         Empreendedor.objects.create(
         nome=nome, idade =idade, 
-        identidadedegenero=identidadedegenero, 
+        identidadegenero=identidadegenero, 
         email=email, telefone=telefone, 
         servico=servico, 
         descricao=descricao
@@ -28,6 +28,7 @@ def cadastrar_empreendedor(request):
 def lista_empreendedores(request):
     empreendedor = Empreendedor.objects.all()
     return render(request, 'lista.html', {'empreendedor': empreendedor})
+
 
 def index(request):
     return render(request, 'index.html')  

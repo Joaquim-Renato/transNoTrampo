@@ -9,9 +9,16 @@
     <h1>Lista de Empreendedores</h1>
     <ul>
         {% for empreendedor in empreendedor %}
-            <li>{{ empreendedor.nome }} - {{ empreendedor.servico }}</li>
+
+
+            <li>
+                {{ empreendedor.nome }} - {{ empreendedor.servico }}
+            </li>
+            
         {% endfor %}
     </ul>
     <a href="{% url 'cadastrar_empreendedor' %}">Cadastrar Novo Empreendedor</a>
+
+    <a href="/" class="btn btn-danger"> Voltar a pag inicial</a>
 </body>
 </html>
