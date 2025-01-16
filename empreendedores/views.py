@@ -13,10 +13,16 @@ def cadastrar_empreendedor(request):
         servico = request.POST['servico']
         descricao = request.POST['descricao']
 
+        if not nome or not email or not servico:
+            return render(request, 'cadastrar.html', {'error': 'Preencha os campos obrigatórios.'})
+
+
         Empreendedor.objects.create(
-        nome=nome, idade =idade, 
+        nome=nome, 
+        idade =idade, 
         identidadegenero=identidadegenero, 
-        email=email, telefone=telefone, 
+        email=email, 
+        telefone=telefone, 
         servico=servico, 
         descricao=descricao
         )
@@ -26,8 +32,9 @@ def cadastrar_empreendedor(request):
 
 
 def lista_empreendedores(request):
-    empreendedor = Empreendedor.objects.all()
-    return render(request, 'lista.html', {'empreendedor': empreendedor})
+
+    empreendedores = Empreendedor.objects.all()
+    return render(request, 'lista.html', {'empreendedores': empreendedores})
 
 
 def index(request):

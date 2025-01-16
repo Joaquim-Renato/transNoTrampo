@@ -33,3 +33,11 @@ python manage.py createsuperuser
 
 ````
 Acesse http://127.0.0.1:8000/admin
+
+
+
+
+ <a href="{% url 'editempreendedor' empreendedor.id %}" class="btn btn-secondary">Editar</a>
+                    <a href="{% url 'deletempreendedor' empreendedor.id %}" 
+                       onclick="return confirm('Tem certeza que deseja excluir este empreendedor?');"
+                       class="btn btn-danger">Excluir</a> *//
