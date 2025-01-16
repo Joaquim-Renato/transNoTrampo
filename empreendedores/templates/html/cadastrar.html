@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastrar Empreendedor</title>
+  </head>
+  <body>
+    <h1>Cadastrar Empreendedor</h1>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="nome" placeholder="Nome" required /><br />
+      <input type="number" name="idade" placeholder="Idade" required /><br />
+      <label for="identidadegenero"> sua identidade de genero</label>
+      <select name="identidadegenero" id="identidadegenero">
+        <option value="nb">Não Binario(nb)</option>
+        <option value="transmasculino">Transmasculino</option>
+        <option value="transfeminina">Transfeminina</option>
+        <option value="boyceta">Boyceta</option>
+      </select>
+      <input type="email" name="email" placeholder="Email" required /><br />
+      <input
+        type="text"
+        name="telefone"
+        placeholder="Telefone"
+        required
+      /><br />
+      <input type="text" name="servico" placeholder="Serviço" required /><br />
+      <textarea name="descricao" placeholder="Descrição"></textarea><br />
+      <button type="submit">Cadastrar</button>
+    </form>
+  </body>
+</html>

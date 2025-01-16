@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Empreendedores</title>
+</head>
+<body>
+    <h1>Lista de Empreendedores</h1>
+    <ul>
+        {% for empreendedor in empreendedor %}
+            <li>{{ empreendedor.nome }} - {{ empreendedor.servico }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'cadastrar_empreendedor' %}">Cadastrar Novo Empreendedor</a>
+</body>
+</html>
