@@ -59,9 +59,9 @@ Exibição de todos os empreendedores.
 **lista.html**
 
 ## Estrutura do Projeto:
-**models.py** – Definindo os modelos.
-**forms.py** – Formulário para cadastro de usuário.
-views.py – Lógica de controle do fluxo.
-templates – Templates HTML para visualização.
-urls.py – Configuração das rotas.
-admin.py – Registro do modelo no Django Admin.
+**models.py** – Definindo os modelos.<br>
+**forms.py** – Formulário para cadastro de usuário. <br>
+**views.py** – Lógica de controle do fluxo. <br>
+**templates** – Templates HTML para visualização. <br>
+**urls.py** – Configuração das rotas. <br>
+**admin.py** – Registro do modelo no Django Admin.
