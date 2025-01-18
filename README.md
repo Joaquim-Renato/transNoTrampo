@@ -43,3 +43,25 @@ Acesse http://127.0.0.1:8000/admin
                        class="btn btn-danger">Excluir</a> *//
 
 `````
+
+
+Sobre o codigo 
+
+Cadastro de usuário (empreendedor). 
+**cadastrar.html**
+
+Edição de dados do empreendedor (somente o próprio pode editar).
+**editar.html**
+
+Exclusão de dados do empreendedor (somente o próprio pode excluir).
+**delete.html**
+Exibição de todos os empreendedores.
+**lista.html**
+
+## Estrutura do Projeto:
+**models.py** – Definindo os modelos.
+**forms.py** – Formulário para cadastro de usuário.
+views.py – Lógica de controle do fluxo.
+templates – Templates HTML para visualização.
+urls.py – Configuração das rotas.
+admin.py – Registro do modelo no Django Admin.
