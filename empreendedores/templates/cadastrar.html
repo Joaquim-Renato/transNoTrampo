@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastrar Empreendedor</title>
+    {% load static %}
     <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -19,27 +20,16 @@
   </head>
 
   <body>
+    <h1>Olá seja Bem vinde!</h1>
     <div class="container-fluid">
-      <form class="row g-3" method="post">
 
-    <h1>Cadastrar Empreendedor</h1>
+   <h2>Formulário de Cadastro</h2>
+    
     <form method="POST">
+      
       {% csrf_token %}
       {{ form.as_p }}
       
-      <label for="idade"> Sua idade</label>
-      <input type="number" name="idade" placeholder="Idade" required /><br />
-      <label for="identidadegenero"> Sua identidade de genero</label>
-      <select name="identidadegenero" id="identidadegenero">
-        <option value="nb">Não Binario(nb)</option>
-        <option value="transmasculino">Transmasculino</option>
-        <option value="transfeminina">Transfeminina</option>
-        <option value="boyceta">Boyceta</option>
-      </select>
-            <input type="text" name="telefone" placeholder="Telefone" required />
-        <br />
-      <input type="text" name="servico" placeholder="Serviço" required /><br />
-      <textarea name="descricao" placeholder="Descrição"> </textarea> <br />
       <button type="submit">Cadastrar</button>
     </div>
   </form>

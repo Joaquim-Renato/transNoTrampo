@@ -7,26 +7,26 @@ from .forms import EmpreendedorSignUpForm
 
 def cadastrar_empreendedor(request):
     if request.method == 'POST':
-        form = EmpreendedorSignUpForm(request.POST)
+        form = Empreendedor(request.POST)
+        
         if form.is_valid():
             # Criação do usuário
             user = form.save()
 
-            # Agora que o usuário está registrado, criamos o Empreendedor
+               # Criação do Empreendedor vinculado ao usuário
             Empreendedor.objects.create(
-                user=user, 
-                idade=request.POST['idade'],
-                identidadegenero=request.POST['identidadegenero'],
-                telefone=request.POST['telefone'],
-                servico=request.POST['servico'],
-                descricao=request.POST['descricao']
+                user=user,
+                nome=form.cleaned_data.get('username'),  
+                idade=request.POST.get('idade'), 
+                identidadegenero=request.POST.get('identidadegenero'),  
+                telefone=request.POST.get('telefone'), 
+                servico=request.POST.get('servico'),  
+                descricao=request.POST.get('descricao')  
             )
-
-            # Efetuar login automaticamente após o cadastro
-            login(request, user)
 
             messages.success(request, 'Cadastro realizado com sucesso! Você está logado agora.')
             return redirect('lista_empreendedores')
+        
         else:
             messages.error(request, 'Erro no cadastro. Verifique os campos.')
             return render(request, 'cadastrar.html', {'form': form})
@@ -34,7 +34,7 @@ def cadastrar_empreendedor(request):
     else:
         form = EmpreendedorSignUpForm()
     return render(request, 'cadastrar.html', {'form': form})
-
+  
 def lista_empreendedores(request):
     empreendedores = Empreendedor.objects.all()
     return render(request, 'lista.html', {'empreendedores': empreendedores})
