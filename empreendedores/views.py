@@ -43,13 +43,11 @@ def cadastrar_empreendedor(request):
     return render(request, "cadastrar.html", {"form": formulario})
 
 
-
     
 def verificar_senha(senha_informada, senha_armazenada):
     # Aplica o mesmo método de criptografia
-    senha_criptografada = sha256(senha_informada.encode()).hexdigest()
+    senha_criptografada = criptografia(senha_informada)
     return senha_criptografada == senha_armazenada
-
 
 
 
@@ -66,9 +64,11 @@ def login_view(request):
         try:
             # Verifica se o email existe
             empreendedor = Empreendedor.objects.get(email=email)
+            
+           
 
             # Valida a senha criptografada
-            if verificar_senha(senha, empreendedor.senha):
+            if verificar_senha(criptografia(senha), empreendedor.senha):
                 # Cria a sessão do usuário 
                 request.session["empreendedor_id"] = empreendedor.id
                 messages.success(request, "Login realizado com sucesso!")
@@ -76,7 +76,7 @@ def login_view(request):
                 # Redireciona para o perfil do empreendedor
                 return redirect('perfil_empreendedor') 
             else:
-                messages.error(request, "Senha incorreta.")
+                messages.error(request, empreendedor.senha)
         except Empreendedor.DoesNotExist:
             messages.error(request, "E-mail não encontrado.")
     
