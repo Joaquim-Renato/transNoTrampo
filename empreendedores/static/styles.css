@@ -3,7 +3,15 @@ body {
     background-color: #fdf7f7; /* Fundo suave, quase branco, para dar leveza */
     margin: 0;
     padding: 0;
+    display: flex; /* Usa Flexbox para layout */
+    flex-direction: column; /* Alinha os itens na vertical */
+    justify-content: center; /* Centraliza os itens verticalmente */
+    min-height: 100vh; /* Preenche a altura total da viewport */
+    background-color: #b7d5e5; /* Cor sólida para o fundo */
+    font-size: 16px;
 }
+
+
 
 h1, h2 {
     text-align: center;
@@ -125,8 +133,10 @@ footer {
     color: white; /* Texto branco para contraste */
     text-align: center; /* Centraliza o conteúdo */
     padding: 20px; /* Espaçamento interno */
+    position: relative;
     font-size: 1rem; /* Tamanho padrão para o texto */
     border-top: 1px solid #bf717d; /* Linha de separação */
+    width: 100%; /* Faz o footer ocupar toda a largura */
 }
 
 footer a {
