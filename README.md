@@ -68,3 +68,9 @@ pip é o gerenciador de pacotes do python
 **templates** – Templates HTML para visualização. <br>
 **urls.py** – Configuração das rotas. <br>
 **admin.py** – Registro do modelo no Django Admin.
+
+
+
+
+ <a href="{% url 'edit_empreendedor' empreendedor.id %}">Editar</a>
+                            <a href="{% url 'delete_empreendedor' empreendedor.id %}">Excluir</a>

@@ -30,12 +30,11 @@
 
                     <li class="list-group-item">
 
-                            <h3>{{ empreendedor.user.username }}</h3>
+                            <h3>{{ empreendedor.nome }}</h3>
                             <p>{{ empreendedor.servico }}</p>
                             <p>{{ empreendedor.descricao }}</p>
-                            <a href="{% url 'edit_empreendedor' empreendedor.id %}">Editar</a>
-                            <a href="{% url 'delete_empreendedor' empreendedor.id %}">Excluir</a>
-                        </li>
+                           
+                    </li>
                     
                 {% endfor %}
             </ul>

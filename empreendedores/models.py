@@ -14,4 +14,4 @@ class Empreendedor(models.Model):
     data_cadastro = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.nome  # Exibindo o cpf do usuário (Empreendedor)
+        return self.nome  # Exibindo o nome do usuário (Empreendedor)
