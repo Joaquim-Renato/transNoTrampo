@@ -1,0 +1,135 @@
+body {
+    font-family: 'Noto Sans', sans-serif; /* Uma fonte mais suave com toque oriental */
+    background-color: #fdf7f7; /* Fundo suave, quase branco, para dar leveza */
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #9c5b6d; /* Tom inspirado em flores de cerejeira */
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 2.5rem;
+}
+
+h2 {
+    margin-top: 10px;
+    font-size: 1.8rem;
+}
+
+form {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: white;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Sombras suaves para elegância */
+    border-radius: 10px;
+    border: 1px solid #e0c3c3; /* Borda delicada */
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #8b5e63; /* Cor suave, inspirada em galhos de cerejeira */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+select {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #e0b0b0; /* Borda rosa suave */
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #fdf2f4; /* Fundo rosa pálido */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: #d48b94; /* Cor de destaque inspirada em flores */
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #d48b94; /* Rosa flor de cerejeira para o botão */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #bf717d; /* Cor de destaque no hover */
+}
+.btn{
+    width: 100%;
+    padding: 12px;
+    background-color: #d48b94; /* Rosa flor de cerejeira para o botão */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none; /* Remove o sublinhado */
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+     
+}
+ .btn:hover {
+        background-color: #bf717d; /* Cor de destaque no hover */
+    } 
+
+
+form select {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #e0b0b0;
+    border-radius: 6px;
+    background-color: #fdf2f4;
+}
+
+input, button {
+    box-sizing: border-box;
+}
+
+/* Pequenos detalhes florais */
+form::before {
+    content: "🌸";
+    font-size: 3rem;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #d48b94; /* Simboliza uma flor de cerejeira */
+}
+
+footer {
+    background-color: #d48b94; /* Rosa flor de cerejeira */
+    color: white; /* Texto branco para contraste */
+    text-align: center; /* Centraliza o conteúdo */
+    padding: 20px; /* Espaçamento interno */
+    font-size: 1rem; /* Tamanho padrão para o texto */
+    border-top: 1px solid #bf717d; /* Linha de separação */
+}
+
+footer a {
+    color: white; /* Links no rodapé em branco */
+    text-decoration: none; /* Remove o sublinhado */
+    font-weight: bold; /* Destaca os links */
+    transition: color 0.3s; /* Transição suave na interação */
+}
+footer a:hover {
+    color: #fdf7f7; /* Tom mais claro ao passar o mouse */
+}
