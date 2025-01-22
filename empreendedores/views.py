@@ -30,11 +30,10 @@ def cadastrar_empreendedor(request):
             messages.success(request, "Empreendedor cadastrado com sucesso!")
             return redirect("login")  # Redireciona para outra página
          
-        else:
+    else:
 
             messages.error(request, "Erro ao cadastrar. Verifique os dados informados.")
             
-    else:
         # Inicializa o formulário vazio para requisições GET
     formulario = EmpreendedorForm()
 
