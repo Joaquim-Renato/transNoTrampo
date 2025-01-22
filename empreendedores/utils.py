@@ -1,4 +1,8 @@
-from django.contrib.auth.hashers import make_password
+import bcrypt
 
 def criptografia(senha):
-    return make_password(senha)
+
+    salt = bcrypt.gensalt()
+
+    criptosenhas = bcrypt.hashpw(senha.encode('utf8'),salt)
+    return criptosenhas.decode('utf-8')

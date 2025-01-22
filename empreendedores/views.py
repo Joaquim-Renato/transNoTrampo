@@ -41,11 +41,17 @@ def cadastrar_empreendedor(request):
 
     # O formulário estará sempre inicializado antes de renderizar o template
     return render(request, "cadastrar.html", {"form": formulario})
+
+
+
     
 def verificar_senha(senha_informada, senha_armazenada):
     # Aplica o mesmo método de criptografia
     senha_criptografada = sha256(senha_informada.encode()).hexdigest()
     return senha_criptografada == senha_armazenada
+
+
+
 
 def login_view(request):
     if request.method == "POST":
