@@ -25,14 +25,12 @@
 
    <h2>Formulário de Cadastro</h2>
     
-    <form method="POST">
-      
-      {% csrf_token %}
-      {{ form.as_p }}
-      
-      <button type="submit">Cadastrar</button>
-    </div>
-  </form>
-    </form>
+   <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Cadastrar</button>
+</form>
+
+    
   </body>
 </html>

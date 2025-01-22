@@ -1,4 +1,5 @@
 from django.urls import path
+from .views import cadastrar_empreendedor
 from . import views
 
 # rota, view responsável, nome de referência

@@ -1,43 +1,53 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from .models import Empreendedor
-from .forms import EmpreendedorSignUpForm
+from .forms import EmpreendedorForm
+from django.http import HttpResponse
+from .utils import criptografia
+
 
 def cadastrar_empreendedor(request):
-    if request.method == 'POST':
-        form = Empreendedor(request.POST)
-        
-        if form.is_valid():
-            # Criação do usuário
-            user = form.save()
+    if request.method == "POST": 
+         formulario = EmpreendedorForm(request.POST)
+         
+         print(formulario)
+         
+         if formulario.is_valid():
+            empreendedor = formulario.save(
+                commit=False
+            )  # Cria o objeto, mas ainda não salva no banco de dados
 
-               # Criação do Empreendedor vinculado ao usuário
-            Empreendedor.objects.create(
-                user=user,
-                nome=form.cleaned_data.get('username'),  
-                idade=request.POST.get('idade'), 
-                identidadegenero=request.POST.get('identidadegenero'),  
-                telefone=request.POST.get('telefone'), 
-                servico=request.POST.get('servico'),  
-                descricao=request.POST.get('descricao')  
-            )
+            # Aqui aplica a criptografia na senha
+            senha = formulario.cleaned_data.get("senha")
+            senha_criptografada = criptografia(senha)  # Aplica a criptografia
 
-            messages.success(request, 'Cadastro realizado com sucesso! Você está logado agora.')
-            return redirect('lista_empreendedores')
-        
+             # Atualiza a senha criptografada no objeto do paciente
+            empreendedor.senha = senha_criptografada
+
+            empreendedor.save()  # Agora salva o com a senha criptografada
+
+            messages.success(request, "Empreendedor cadastrado com sucesso!")
+            return redirect("login")  # Redireciona para outra página
+         
         else:
-            messages.error(request, 'Erro no cadastro. Verifique os campos.')
-            return render(request, 'cadastrar.html', {'form': form})
 
+            messages.error(request, "Erro ao cadastrar. Verifique os dados informados.")
+            
     else:
-        form = EmpreendedorSignUpForm()
-    return render(request, 'cadastrar.html', {'form': form})
-  
+        # Inicializa o formulário vazio para requisições GET
+    formulario = EmpreendedorForm()
+
+    # O formulário estará sempre inicializado antes de renderizar o template
+    return render(request, "cadastrar.html", {"form": formulario})
+    
+
+
 def lista_empreendedores(request):
     empreendedores = Empreendedor.objects.all()
     return render(request, 'lista.html', {'empreendedores': empreendedores})
+
+
 
 def index(request):
     return render(request, 'index.html')

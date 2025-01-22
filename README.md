@@ -58,6 +58,9 @@ Exclusão de dados do empreendedor (somente o próprio pode excluir).
 Exibição de todos os empreendedores.
 **lista.html**
 
+
+pip é o gerenciador de pacotes do python 
+
 ## Estrutura do Projeto:
 **models.py** – Definindo os modelos.<br>
 **forms.py** – Formulário para cadastro de usuário. <br>
