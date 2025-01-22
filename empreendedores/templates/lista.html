@@ -27,9 +27,12 @@
                 <ul class="list-group">
                     {% for empreendedor in  empreendedores %}
                         <li class="list-group-item">
-                            <h3 class="mb-2">{{ empreendedor.nome }}</h3>
-                            <p><strong>Serviço:</strong> {{ empreendedor.servico }}</p>
-                            <p><strong>Descrição:</strong> {{ empreendedor.descricao }}</p>
+                            <!-- Tornando o nome do empreendedor clicável -->
+                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalEmpreendedor" onclick="abrirModal('{{ empreendedor.nome }}', '{{ empreendedor.servico }}', '{{ empreendedor.descricao }}', '{{ empreendedor.telefone }}', '{{ empreendedor.email }}')">
+                                <h3 class="mb-2">{{ empreendedor.nome }}</h3>
+                                <p><strong>Serviço:</strong> {{ empreendedor.servico }}</p>
+                                <p><strong>Descrição:</strong> {{ empreendedor.descricao }}</p>
+                            </a>
                         </li>
                     {% empty %}
                         <li class="list-group-item">
@@ -47,6 +50,39 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalEmpreendedor" tabindex="-1" aria-labelledby="modalEmpreendedorLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEmpreendedorLabel">Detalhes do Empreendedor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Nome:</strong> <span id="modalNome"></span></p>
+                    <p><strong>Serviço:</strong> <span id="modalServico"></span></p>
+                    <p><strong>Descrição:</strong> <span id="modalDescricao"></span></p>
+                    <p><strong>Telefone:</strong> <span id="modalTelefone"></span></p>
+                    <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para abrir o modal e preencher as informações do empreendedor
+        function abrirModal(nome, servico, descricao, telefone, email) {
+            document.getElementById('modalNome').textContent = nome;
+            document.getElementById('modalServico').textContent = servico;
+            document.getElementById('modalDescricao').textContent = descricao;
+            document.getElementById('modalTelefone').textContent = telefone;
+            document.getElementById('modalEmail').textContent = email;
+        }
+    </script>
 
 </body>
 </html>
