@@ -42,24 +42,33 @@ def cadastrar_empreendedor(request):
     # O formulário estará sempre inicializado antes de renderizar o template
     return render(request, "cadastrar.html", {"form": formulario})
     
-
+def verificar_senha(senha_informada, senha_armazenada):
+    # Aplica o mesmo método de criptografia
+    senha_criptografada = sha256(senha_informada.encode()).hexdigest()
+    return senha_criptografada == senha_armazenada
 
 def login_view(request):
     if request.method == "POST":
         email = request.POST.get('email')
         senha = request.POST.get('senha')
+
+         # Verifica se o e-mail foi informado
+        if not email or not senha:
+            messages.error(request, "Por favor, preencha todos os campos.")
+            return render(request, "login.html")
+
         try:
             # Verifica se o email existe
             empreendedor = Empreendedor.objects.get(email=email)
 
             # Valida a senha criptografada
             if verificar_senha(senha, empreendedor.senha):
-                # Cria a sessão do usuário (você pode usar `request.session`)
+                # Cria a sessão do usuário 
                 request.session["empreendedor_id"] = empreendedor.id
                 messages.success(request, "Login realizado com sucesso!")
                 
                 # Redireciona para o perfil do empreendedor
-                return redirect('perfil_empreendedor')  # Redireciona para a página de perfil
+                return redirect('perfil_empreendedor') 
             else:
                 messages.error(request, "Senha incorreta.")
         except Empreendedor.DoesNotExist:
@@ -67,21 +76,8 @@ def login_view(request):
     
     return render(request, "login.html")
 
-from hashlib import sha256
 
-def verificar_senha(senha_informada, senha_armazenada):
-    # Aplica o mesmo método de criptografia
-    senha_criptografada = sha256(senha_informada.encode()).hexdigest()
-    return senha_criptografada == senha_armazenada
 
-def home_view(request):
-    empreendedor_id = request.session.get("empreendedor_id")
-    if not empreendedor_id:
-        return redirect("login")  # Redireciona para o login se não estiver logado
-    
-    # Pegue os dados do empreendedor, se necessário
-    empreendedor = Empreendedor.objects.get(id=empreendedor_id)
-    return render(request, "home.html", {"empreendedor": empreendedor})
 
 
 def logout_view(request):
