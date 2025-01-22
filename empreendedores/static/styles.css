@@ -38,7 +38,10 @@ label {
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"],
+input[type="idade"],
+input[type="descricao"],
 input[type="date"],
 select {
     width: calc(100% - 20px);
@@ -51,8 +54,10 @@ select {
 }
 
 input[type="text"]:focus,
+input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="date"]:focus,
+input[type="descricao"]:focus,
 select:focus {
     border-color: #d48b94; /* Cor de destaque inspirada em flores */
     outline: none;
