@@ -17,15 +17,28 @@
     ></script>
 </head>
 
-<body>
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Inicio</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Sobre</a>
+      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contato</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+  </div>
+
+<body style="background-color: #f8ceeb; ">
     <div class="container text-center mt-5">
         <h1>Olá, seja bem-vinde! :D</h1>
 
         <p>O que você quer fazer primeiro?</p>
         
         <div class="d-flex justify-content-center gap-3 mt-4">
-            <a href="cadastrar/" class="btn btn-secondary">Cadastrar seus serviços</a>
-            <a href="login/" class="btn btn-warning">Já tenho cada quero logar</a>
+            <a href="cadastrar/" class="btn btn-secondary">Cadastrar serviços</a>
+            <a href="login/" class="btn btn-warning">Login</a>
             <a href="empreendedores/" class="btn btn-primary">Ver os serviços disponíveis</a>
             <a href="/" class="btn btn-warning">Voltar</a>
         </div>
