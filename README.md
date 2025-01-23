@@ -43,3 +43,34 @@ Acesse http://127.0.0.1:8000/admin
                        class="btn btn-danger">Excluir</a> *//
 
 `````
+
+
+Sobre o codigo 
+
+Cadastro de usuário (empreendedor). 
+**cadastrar.html**
+
+Edição de dados do empreendedor (somente o próprio pode editar).
+**editar.html**
+
+Exclusão de dados do empreendedor (somente o próprio pode excluir).
+**delete.html**
+Exibição de todos os empreendedores.
+**lista.html**
+
+
+pip é o gerenciador de pacotes do python 
+
+## Estrutura do Projeto:
+**models.py** – Definindo os modelos.<br>
+**forms.py** – Formulário para cadastro de usuário. <br>
+**views.py** – Lógica de controle do fluxo. <br>
+**templates** – Templates HTML para visualização. <br>
+**urls.py** – Configuração das rotas. <br>
+**admin.py** – Registro do modelo no Django Admin.
+
+
+
+
+ <a href="{% url 'edit_empreendedor' empreendedor.id %}">Editar</a>
+                            <a href="{% url 'delete_empreendedor' empreendedor.id %}">Excluir</a>
