@@ -1,145 +1,99 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, authenticate
+from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Empreendedor
 from .forms import EmpreendedorForm
-from django.http import HttpResponse
-from .utils import criptografia
-import bcrypt
+from .utils import criptografia, verificar_senha
 
 
 def cadastrar_empreendedor(request):
-    if request.method == "POST": 
-         formulario = EmpreendedorForm(request.POST)
-         
-         print(formulario)
-         
-         if formulario.is_valid():
-            empreendedor = formulario.save(
-                commit=False
-            )  # Cria o objeto, mas ainda não salva no banco de dados
-
-            # Aqui aplica a criptografia na senha
+    if request.method == "POST":
+        formulario = EmpreendedorForm(request.POST)
+        if formulario.is_valid():
+            empreendedor = formulario.save(commit=False)
             senha = formulario.cleaned_data.get("senha")
-            empreendedor.senha = bcrypt.hashpw(senha.encode('utf-8'), bcrypt.gensalt())
-
-
-            empreendedor.save()  # Agora salva o com a senha criptografada
-
+            empreendedor.senha = criptografia(senha)  # Criptografa a senha
+            empreendedor.save()
             messages.success(request, "Empreendedor cadastrado com sucesso!")
-            return redirect("login")  # Redireciona para outra página
-         
+            return redirect("login")
+        else:
+            messages.error(request, "Erro ao cadastrar. Verifique os dados.")
     else:
-
-            messages.error(request, "Erro ao cadastrar. Verifique os dados informados.")
-            
-        # Inicializa o formulário vazio para requisições GET
-    formulario = EmpreendedorForm()
-
-    # O formulário estará sempre inicializado antes de renderizar o template
+        formulario = EmpreendedorForm()
     return render(request, "cadastrar.html", {"form": formulario})
-
-
-    
-def verificar_senha(senha_informada, senha_armazenada):
-    # Aplica o mesmo método de criptografia
-    return bcrypt.checkpw(senha_informada.encode('utf-8'), senha_armazenada)
-
 
 
 def login_view(request):
     if request.method == "POST":
-        email = request.POST.get('email')
-        senha = request.POST.get('senha')
+        email = request.POST.get("email")
+        senha = request.POST.get("senha")
 
-         # Verifica se o e-mail foi informado
         if not email or not senha:
-            messages.error(request, "Por favor, preencha todos os campos.")
+            messages.error(request, "Preencha todos os campos.")
             return render(request, "login.html")
 
         try:
-            # Verifica se o email existe
             empreendedor = Empreendedor.objects.get(email=email)
-
-            # Valida a senha criptografada
             if verificar_senha(senha, empreendedor.senha):
-                # Cria a sessão do usuário 
                 request.session["empreendedor_id"] = empreendedor.id
                 messages.success(request, "Login realizado com sucesso!")
-                
-                # Redireciona para o perfil do empreendedor
-                return redirect('perfil_empreendedor') 
+                return redirect("perfil_empreendedor", empreendedor_id=empreendedor.id)
             else:
-                messages.error(request, empreendedor.senha)
+                messages.error(request, "Senha incorreta.")
         except Empreendedor.DoesNotExist:
             messages.error(request, "E-mail não encontrado.")
-    
     return render(request, "login.html")
-
-
 
 
 def logout_view(request):
     if "empreendedor_id" in request.session:
-        del request.session["empreendedor_id"]  # Remove a sessão
+        del request.session["empreendedor_id"]
     messages.success(request, "Logout realizado com sucesso.")
     return redirect("login")
 
 
 @login_required
-def perfil_empreendedor(request):
-    try:
-        empreendedor = Empreendedor.objects.get(user=request.user)
-        return render(request, 'perfil.html', {'empreendedor': empreendedor})
-    except Empreendedor.DoesNotExist:
-        messages.error(request, "Empreendedor não encontrado.")
-        return redirect("index")
+def perfil_empreendedor(request, empreendedor_id):
+    empreendedor = get_object_or_404(Empreendedor, id=empreendedor_id)
+    return render(request, "perfil.html", {"empreendedor": empreendedor})
 
-def lista_empreendedores(request):
-    empreendedores = Empreendedor.objects.all()
-    return render(request, 'lista.html', {'empreendedores': empreendedores})
-
-
-
-def index(request):
-    return render(request, 'index.html')
 
 @login_required
-
 def edit_empreendedor(request, id):
     empreendedor = get_object_or_404(Empreendedor, id=id)
-
-    # Certificando-se de que o usuário logado é o proprietário do empreendedor
     if empreendedor.user != request.user:
-        return redirect('index')
+        return HttpResponseForbidden("Você não tem permissão para editar este recurso.")
 
-    if request.method == 'POST':
-        # Atualiza os campos do Empreendedor
-        empreendedor.idade = request.POST['idade']
-        empreendedor.identidadegenero = request.POST['identidadegenero']
-        empreendedor.telefone = request.POST['telefone']
-        empreendedor.servico = request.POST['servico']
-        empreendedor.descricao = request.POST['descricao']
-        empreendedor.save()
-
-        messages.success(request, 'Dados atualizados com sucesso!')
-        return redirect('lista_empreendedores')
-
-    return render(request, 'editar.html', {'empreendedor': empreendedor})
+    if request.method == "POST":
+        formulario = EmpreendedorForm(request.POST, instance=empreendedor)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Dados atualizados com sucesso!")
+            return redirect("lista_empreendedores")
+        else:
+            messages.error(request, "Erro ao atualizar os dados.")
+    else:
+        formulario = EmpreendedorForm(instance=empreendedor)
+    return render(request, "editar.html", {"form": formulario})
 
 
 @login_required
 def delete_empreendedor(request, id):
     empreendedor = get_object_or_404(Empreendedor, id=id)
-
-    # Certificando-se de que o usuário logado é o proprietário do empreendedor
     if empreendedor.user != request.user:
-        return redirect('index')
-
-    if request.method == 'POST':
+        return HttpResponseForbidden("Você não tem permissão para excluir este recurso.")
+    if request.method == "POST":
         empreendedor.delete()
-        messages.success(request, 'Empreendedor excluído com sucesso!')
-        return redirect('lista_empreendedores')
+        messages.success(request, "Empreendedor excluído com sucesso!")
+        return redirect("lista_empreendedores")
+    return render(request, "delete.html", {"empreendedor": empreendedor})
 
-    return render(request, 'delete.html', {'empreendedor': empreendedor})
+
+def lista_empreendedores(request):
+    empreendedores = Empreendedor.objects.all()
+    return render(request, "lista.html", {"empreendedores": empreendedores})
+
+
+def index(request):
+    return render(request, "index.html")
