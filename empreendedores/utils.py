@@ -1,5 +1,6 @@
 import bcrypt
 
+
 def criptografia(senha):
     salt = bcrypt.gensalt()
     return bcrypt.hashpw(senha.encode("utf-8"), salt).decode("utf-8")
