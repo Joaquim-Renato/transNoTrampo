@@ -6,7 +6,7 @@ from .models import Empreendedor
 from .forms import EmpreendedorForm
 from django.http import HttpResponse
 from .utils import criptografia
-from hashlib import sha256
+import bcrypt
 
 
 def cadastrar_empreendedor(request):
@@ -22,10 +22,8 @@ def cadastrar_empreendedor(request):
 
             # Aqui aplica a criptografia na senha
             senha = formulario.cleaned_data.get("senha")
-            senha_criptografada = criptografia(senha)  # Aplica a criptografia
+            empreendedor.senha = bcrypt.hashpw(senha.encode('utf-8'), bcrypt.gensalt())
 
-             # Atualiza a senha criptografada no objeto do paciente
-            empreendedor.senha = senha_criptografada
 
             empreendedor.save()  # Agora salva o com a senha criptografada
 
@@ -46,8 +44,7 @@ def cadastrar_empreendedor(request):
     
 def verificar_senha(senha_informada, senha_armazenada):
     # Aplica o mesmo método de criptografia
-    senha_criptografada = criptografia(senha_informada)
-    return senha_criptografada == senha_armazenada
+    return bcrypt.checkpw(senha_informada.encode('utf-8'), senha_armazenada)
 
 
 
@@ -64,11 +61,9 @@ def login_view(request):
         try:
             # Verifica se o email existe
             empreendedor = Empreendedor.objects.get(email=email)
-            
-           
 
             # Valida a senha criptografada
-            if verificar_senha(criptografia(senha), empreendedor.senha):
+            if verificar_senha(senha, empreendedor.senha):
                 # Cria a sessão do usuário 
                 request.session["empreendedor_id"] = empreendedor.id
                 messages.success(request, "Login realizado com sucesso!")
@@ -85,7 +80,6 @@ def login_view(request):
 
 
 
-
 def logout_view(request):
     if "empreendedor_id" in request.session:
         del request.session["empreendedor_id"]  # Remove a sessão
@@ -95,12 +89,12 @@ def logout_view(request):
 
 @login_required
 def perfil_empreendedor(request):
-    # Obter o empreendedor com base no ID do usuário logado
-    empreendedor = Empreendedor.objects.get(user=request.user)
-    
-    # Passa as informações do empreendedor para o template
-    return render(request, 'perfil.html', {'empreendedor': empreendedor})
-
+    try:
+        empreendedor = Empreendedor.objects.get(user=request.user)
+        return render(request, 'perfil.html', {'empreendedor': empreendedor})
+    except Empreendedor.DoesNotExist:
+        messages.error(request, "Empreendedor não encontrado.")
+        return redirect("index")
 
 def lista_empreendedores(request):
     empreendedores = Empreendedor.objects.all()
@@ -110,6 +104,8 @@ def lista_empreendedores(request):
 
 def index(request):
     return render(request, 'index.html')
+
+@login_required
 
 def edit_empreendedor(request, id):
     empreendedor = get_object_or_404(Empreendedor, id=id)
@@ -132,6 +128,8 @@ def edit_empreendedor(request, id):
 
     return render(request, 'editar.html', {'empreendedor': empreendedor})
 
+
+@login_required
 def delete_empreendedor(request, id):
     empreendedor = get_object_or_404(Empreendedor, id=id)
 

@@ -122,7 +122,7 @@ USE_L10N = True
 USE_TZ = True
 
 LOGIN_URL = 'login'  # Se estiver usando um caminho como '/accounts/login/', altere para o nome correto
-
+LOGIN_REDIRECT_URL = '/perfil/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
