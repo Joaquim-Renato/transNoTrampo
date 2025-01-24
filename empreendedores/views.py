@@ -79,8 +79,9 @@ def edit_empreendedor(request, empreendedor_id):
     
     return render(request, 'editar.html', {'form': formulario, 'empreendedor': empreendedor})
 
+
 def delete_empreendedor(request, empreendedor_id):
-    empreendedor = get_object_or_404(Empreendedor, empreendedor_id)
+    empreendedor = get_object_or_404(Empreendedor, id=empreendedor_id)
    
     if request.method == "POST":
         empreendedor.delete()

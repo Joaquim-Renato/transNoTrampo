@@ -27,7 +27,12 @@
   
     <!-- Aqui você pode adicionar links para editar o perfil ou sair -->
     <a href="{% url 'edit_empreendedor' empreendedor.id %}" type="button" class="btn btn-secondary">Editar Perfil</a>
+    
     <a href="{% url 'logout' %}" type="button" class="btn btn-danger">Sair</a>
  
+    <br>
+    <br>
+    <a href="{% url 'delete_empreendedor' empreendedor.id %}" class="btn btn-danger">Excluir Perfil</a>
+
 </body>
 </html>
