@@ -1,55 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Empreendedor</title>
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
+
 <body>
     <div class="container mt-5">
         <h2>Editar Empreendedor</h2>
         {% if error %}
-            <div class="alert alert-danger">{{ error }}</div>
+        <div class="alert alert-danger">{{ error }}</div>
         {% endif %}
-        <form method="POST">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="user" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" value="{{ empreendedor.user }}">
-            </div>
-            <div class="mb-3">
-                <label for="idade" class="form-label">Idade</label>
-                <input type="text" class="form-control" id="idade" name="idade" value="{{ empreendedor.idade }}">
-            </div>
-            <div class="mb-3">
-                <label for="identidadegenero" class="form-label">Identidade de Gênero</label>
-                <input type="text" class="form-control" id="identidadegenero" name="identidadegenero" value="{{ empreendedor.identidadegenero }}">
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ empreendedor.email }}">
-            </div>
-            <div class="mb-3">
-                <label for="telefone" class="form-label">Telefone</label>
-                <input type="text" class="form-control" id="telefone" name="telefone" value="{{ empreendedor.telefone }}">
-            </div>
-            <div class="mb-3">
-                <label for="servico" class="form-label">Serviço</label>
-                <input type="text" class="form-control" id="servico" name="servico" value="{{ empreendedor.servico }}">
-            </div>
-            <div class="mb-3">
-                <label for="descricao" class="form-label">Descrição</label>
-                <textarea class="form-control" id="descricao" name="descricao">{{ empreendedor.descricao }}</textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Salvar</button>
-            <a href="{% url 'lista_empreendedores' %}" class="btn btn-secondary">Cancelar</a>
 
-            <a href="{% url 'edit_empreendedor' empreendedor.id %}" class="btn btn-secondary">Editar</a>
-        </form>
-    </div>
+        <div class="container">
+            <div class="card mt-4">
+                <div class="card-header bg-primary text-white">
+                    Editar Produto
+                </div>
+                <form method="POST">
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }} <!-- Exibe o formulário -->
+
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <a href="{% url 'lista_empreendedores' %}" class="btn btn-secondary">Cancelar</a>
+
+                            <a href="{% url 'edit_empreendedor' empreendedor.id %}" class="btn btn-secondary">Editar</a>
+                        </form>
+                    </div>
 </body>
+
 </html>

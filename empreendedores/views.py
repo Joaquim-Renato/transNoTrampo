@@ -4,8 +4,7 @@ from django.contrib import messages
 from .models import Empreendedor
 from .forms import EmpreendedorForm
 from .utils import criptografia, verificar_senha
-from django.http import HttpResponseForbidden
-from django.http import HttpResponseRedirect
+
 
 
 
@@ -64,29 +63,25 @@ def perfil_empreendedor(request, empreendedor_id):
 
 
 
-def edit_empreendedor(request, id):
-    empreendedor = get_object_or_404(Empreendedor, id=id)
-    if empreendedor.id != request.user:
-        return HttpResponseForbidden("Você não tem permissão para editar este recurso.")
-
+def edit_empreendedor(request, empreendedor_id):
+    empreendedor = get_object_or_404(Empreendedor, id=empreendedor_id)
+   
     if request.method == "POST":
         formulario = EmpreendedorForm(request.POST, instance=empreendedor)
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "Dados atualizados com sucesso!")
-            return redirect("lista_empreendedores")
-        else:
-            messages.error(request, "Erro ao atualizar os dados.")
-    else:
-        formulario = EmpreendedorForm(instance=empreendedor)
-    return render(request, "editar.html", {"form": formulario})
+            return redirect("perfil", empreendedor_id=empreendedor.id)
+        else: 
+            formulario = EmpreendedorForm(instance=empreendedor)
+
+            return render(request, 'editar.html', {'formulario': formulario, "empreendedor":empreendedor})
 
 
 
-def delete_empreendedor(request, id):
-    empreendedor = get_object_or_404(Empreendedor, id=id)
-    if empreendedor.user != request.user:
-        return HttpResponseForbidden("Você não tem permissão para excluir este recurso.")
+def delete_empreendedor(request, empreendedor_id):
+    empreendedor = get_object_or_404(Empreendedor, empreendedor_id)
+   
     if request.method == "POST":
         empreendedor.delete()
         messages.success(request, "Empreendedor excluído com sucesso!")
