@@ -5,6 +5,8 @@ from .models import Empreendedor
 from .forms import EmpreendedorForm
 from .utils import criptografia, verificar_senha
 from django.http import HttpResponseForbidden
+from django.http import HttpResponseRedirect
+
 
 
 def cadastrar_empreendedor(request):
@@ -36,8 +38,10 @@ def login_view(request):
         try:
             empreendedor = Empreendedor.objects.get(email=email)
             if verificar_senha(senha, empreendedor.senha):
+                 # Armazena o ID do empreendedor na sessão
                 request.session["empreendedor_id"] = empreendedor.id
                 messages.success(request, "Login realizado com sucesso!")
+
                 return redirect("perfil_empreendedor", empreendedor_id=empreendedor.id)
             else:
                 messages.error(request, "Senha incorreta.")
@@ -53,16 +57,16 @@ def logout_view(request):
     return redirect("login")
 
 
-@login_required
+
 def perfil_empreendedor(request, empreendedor_id):
     empreendedor = get_object_or_404(Empreendedor, id=empreendedor_id)
     return render(request, "perfil.html", {"empreendedor": empreendedor})
 
 
-@login_required
+
 def edit_empreendedor(request, id):
     empreendedor = get_object_or_404(Empreendedor, id=id)
-    if empreendedor.user != request.user:
+    if empreendedor.id != request.user:
         return HttpResponseForbidden("Você não tem permissão para editar este recurso.")
 
     if request.method == "POST":
@@ -78,7 +82,7 @@ def edit_empreendedor(request, id):
     return render(request, "editar.html", {"form": formulario})
 
 
-@login_required
+
 def delete_empreendedor(request, id):
     empreendedor = get_object_or_404(Empreendedor, id=id)
     if empreendedor.user != request.user:
