@@ -29,16 +29,12 @@
         <label for="senha">Senha:</label>
         <input type="password" id="senha" name="senha" required>
         <br>
+        <input type="hidden" name="next" value="{{ next }}">
         <div class="d-flex justify-content-center gap-3 mt-4">
         <button type="submit" class="btn btn-outline-primary">Entrar</button>
         </div>
         
-    </form>
-    <div class="d-flex justify-content-center gap-3 mt-4">
-        <a href="{% url 'cadastrar_empreendedor' %}" class="btn btn-outline-secondary">Cadastre-se</a>
-        <a href="{% url 'lista_empreendedores' %}" class="btn btn-outline-dark">Ver os serviços disponíveis</a>
-        <a href="/" class="btn btn-outline-warning">Voltar ao inicio</a>
-      </div>
+    </form> 
 
     {% if messages %}
     <div>
@@ -48,7 +44,11 @@
     </div>
     {% endif %}
 
- 
+    <div class="d-flex justify-content-center gap-3 mt-4">
+        <a href="{% url 'cadastrar_empreendedor' %}" class="btn btn-outline-secondary">Cadastre-se</a>
+        <a href="{% url 'lista_empreendedores' %}" class="btn btn-outline-dark">Ver os serviços disponíveis</a>
+        <a href="/" class="btn btn-outline-warning">Voltar ao inicio</a>
+      </div>
     
 </body>
 </html>

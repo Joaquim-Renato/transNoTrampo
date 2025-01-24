@@ -6,12 +6,13 @@
     <title>Perfil do Empreendedor</title>
 </head>
 <body>
+   
     <h1>Bem-vinde, {{ empreendedor.nome }}!</h1>
     <p><strong>Email:</strong> {{ empreendedor.email }}</p>
     <p><strong>Idade:</strong> {{ empreendedor.idade }}</p>
     <p><strong>Serviço:</strong> {{ empreendedor.servico }}</p>
     <p><strong>Descrição:</strong> {{ empreendedor.descricao }}</p>
-    
+  
     <!-- Aqui você pode adicionar links para editar o perfil ou sair -->
     <a href="{% url 'edit_empreendedor' empreendedor.id %}">Editar Perfil</a>
     <a href="{% url 'logout' %}">Sair</a>

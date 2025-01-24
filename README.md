@@ -70,6 +70,11 @@ pip é o gerenciador de pacotes do python
 **admin.py** – Registro do modelo no Django Admin.
 
 
+## Links interessantes 
+https://www.dicas-de-django.com.br/077-17-cadastro
+
+https://github.com/grbalmeida/rede-social-django/blob/master/bookmarks/account/templates/registration/login.html
+
 
 
  <a href="{% url 'edit_empreendedor' empreendedor.id %}">Editar</a>
