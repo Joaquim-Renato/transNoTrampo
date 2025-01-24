@@ -71,13 +71,13 @@ def edit_empreendedor(request, empreendedor_id):
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "Dados atualizados com sucesso!")
-            return redirect("perfil", empreendedor_id=empreendedor.id)
-        else: 
-            formulario = EmpreendedorForm(instance=empreendedor)
-
-            return render(request, 'editar.html', {'formulario': formulario, "empreendedor":empreendedor})
-
-
+            return redirect("perfil_empreendedor", empreendedor_id=empreendedor.id)
+        else:
+            messages.error(request, "Erro ao atualizar os dados.")
+    else:
+        formulario = EmpreendedorForm(instance=empreendedor)
+    
+    return render(request, 'editar.html', {'form': formulario, 'empreendedor': empreendedor})
 
 def delete_empreendedor(request, empreendedor_id):
     empreendedor = get_object_or_404(Empreendedor, empreendedor_id)

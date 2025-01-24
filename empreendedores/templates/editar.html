@@ -11,27 +11,14 @@
 <body>
     <div class="container mt-5">
         <h2>Editar Empreendedor</h2>
-        {% if error %}
-        <div class="alert alert-danger">{{ error }}</div>
-        {% endif %}
-
-        <div class="container">
-            <div class="card mt-4">
-                <div class="card-header bg-primary text-white">
-                    Editar Produto
-                </div>
-                <form method="POST">
-                    <div class="card-body">
-                        <form method="POST">
-                            {% csrf_token %}
-                            {{ form.as_p }} <!-- Exibe o formulário -->
-
-                            <button type="submit" class="btn btn-primary">Salvar</button>
-                            <a href="{% url 'lista_empreendedores' %}" class="btn btn-secondary">Cancelar</a>
-
-                            <a href="{% url 'edit_empreendedor' empreendedor.id %}" class="btn btn-secondary">Editar</a>
-                        </form>
-                    </div>
+        
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }} <!-- Exibe o formulário -->
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="{% url 'lista_empreendedores' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+        
 </body>
 
 </html>
