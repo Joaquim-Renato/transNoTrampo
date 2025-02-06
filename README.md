@@ -1,10 +1,18 @@
 # Algumas anotações :
 
+## ordem de elaboração de projeto:
+Models --> criei modelos
+
+utils.py -> criei utilitarios
+
+views. py ->
 ## Instalando django:
 ````cmd
 pip install django==3.2.9
+
 ````
 ## mysql:
+
 ````cmd
 Pip install mysqlclient
 ````
@@ -17,13 +25,36 @@ django-admin startproject seu_projeto
 ## Criando app
 ````cmd
 python manage.py startapp nomedoapp
+
 ````
+## Comandos para Gerenciar o Banco de Dados:
+
+Crie as migrações para o mysql com:
+````cmd
+python manage.py makemigrations
+
+````
+
+Aplique as migrações ao banco de dados com:
+````cmd
+python manage.py migrate
+```` 
 
 ## Executando o servidor local "roda"
 
 ````cmd
 python manage.py runserver
 
+````
+
+# Para implementar cryptogrtafia de senha :
+Para verificar a versão do pacote bcrypt instalado no seu ambiente Python, você pode usar o seguinte comando no terminal:
+````cmd
+pip show bcrypt
+````
+ou para instalar :
+````cmd
+pip install bcrypt    
 ````
 
 # Para criar um superusuário, execute o seguinte comando:
@@ -34,7 +65,10 @@ python manage.py createsuperuser
 ````
 Acesse http://127.0.0.1:8000/admin
 
-
+## Para processamento de imgs 
+````cmd
+ python -m pip install Pillow
+````
 
 ````` py
  <a href="{% url 'editempreendedor' empreendedor.id %}" class="btn btn-secondary">Editar</a>

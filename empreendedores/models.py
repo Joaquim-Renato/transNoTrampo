@@ -13,6 +13,7 @@ class Empreendedor(models.Model):
     servico = models.CharField(max_length=200)
     descricao = models.TextField()
     data_cadastro = models.DateTimeField(auto_now_add=True)
+    foto_perfil = models.ImageField(upload_to='perfil/', blank=True, null=True)  # Campo de imagem
 
     def __str__(self):
         return self.nome  # Exibindo o nome do usuário (Empreendedor)

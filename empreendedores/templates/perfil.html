@@ -20,6 +20,14 @@
 <body style="background-color: antiquewhite;"  >
    
     <h1  >Bem-vinde, {{ empreendedor.nome }}!</h1>
+
+     <!-- Exibir a foto do empreendedor -->
+     {% if empreendedor.foto_perfil %}
+        <img src="{{ empreendedor.foto_perfil.url }}" alt="Foto de {{ empreendedor.nome }}" class="img-thumbnail" width="150">
+     {% else %}
+        <p>Sem foto de perfil</p>
+    {% endif %}
+
     <p><strong>Email:</strong> {{ empreendedor.email }}</p>
     <p><strong>Idade:</strong> {{ empreendedor.idade }}</p>
     <p><strong>Serviço:</strong> {{ empreendedor.servico }}</p>
