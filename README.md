@@ -70,27 +70,22 @@ Acesse http://127.0.0.1:8000/admin
  python -m pip install Pillow
 ````
 
-````` py
- <a href="{% url 'editempreendedor' empreendedor.id %}" class="btn btn-secondary">Editar</a>
-                    <a href="{% url 'deletempreendedor' empreendedor.id %}" 
-                       onclick="return confirm('Tem certeza que deseja excluir este empreendedor?');"
-                       class="btn btn-danger">Excluir</a> *//
-
-`````
 
 
-Sobre o codigo 
+Sobre o codigo
 
-Cadastro de usuário (empreendedor). 
 **cadastrar.html**
+Cadastro de usuário (empreendedor). 
 
-Edição de dados do empreendedor (somente o próprio pode editar).
 **editar.html**
+Edição de dados do empreendedor (somente o próprio pode editar).
 
-Exclusão de dados do empreendedor (somente o próprio pode excluir).
 **delete.html**
-Exibição de todos os empreendedores.
+Exclusão de dados do empreendedor (somente o próprio pode excluir).
+
 **lista.html**
+Exibição de todos os empreendedores.
+
 
 
 pip é o gerenciador de pacotes do python 
