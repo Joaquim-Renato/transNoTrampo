@@ -12,7 +12,7 @@
 <body>
     <div class="container mt-5">
         <h2>Excluir Empreendedor</h2>
-        <p>Tem certeza de que deseja excluir o empreendedor <strong>{{ empreendedor.nome }}</strong> e todos os seus dados?</p>
+        <p>Tem certeza de que deseja excluir seu perfil <strong>{{ empreendedor.nome }}</strong> e todos os seus dados?</p>
         <form method="POST">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger">Sim, excluir</button>
