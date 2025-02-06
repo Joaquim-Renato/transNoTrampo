@@ -68,7 +68,10 @@ def edit_empreendedor(request, empreendedor_id):
    
     if request.method == "POST":
         formulario = EmpreendedorForm(request.POST, instance=empreendedor)
+        
         if formulario.is_valid():
+            senha = formulario.cleaned_data.get("senha")
+            empreendedor.senha = criptografia(senha)
             formulario.save()
             messages.success(request, "Dados atualizados com sucesso!")
             next_url = request.GET.get('next', 'perfil_empreendedor')
