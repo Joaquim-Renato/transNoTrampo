@@ -71,7 +71,8 @@ def edit_empreendedor(request, empreendedor_id):
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "Dados atualizados com sucesso!")
-            return redirect("perfil_empreendedor", empreendedor_id=empreendedor.id)
+            next_url = request.GET.get('next', 'perfil_empreendedor')
+            return redirect(next_url, empreendedor_id=empreendedor.id)
         else:
             messages.error(request, "Erro ao atualizar os dados.")
     else:
