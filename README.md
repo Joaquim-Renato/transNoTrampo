@@ -108,3 +108,18 @@ https://github.com/grbalmeida/rede-social-django/blob/master/bookmarks/account/t
 
  <a href="{% url 'edit_empreendedor' empreendedor.id %}">Editar</a>
                             <a href="{% url 'delete_empreendedor' empreendedor.id %}">Excluir</a>
+
+### O send_mail() é uma função do Django usada para enviar e-mails. No seu código, ele está sendo usado para enviar um e-mail com um link de redefinição de senha.
+
+"Recuperação de Senha",  # Assunto do e-mail
+    f"Olá, clique no link para redefinir sua senha: {reset_link}",  # Corpo do e-mail
+    settings.DEFAULT_FROM_EMAIL,  # Remetente (configurado nas settings do Django)
+    [empreendedor.email],  # Lista de destinatários
+    fail_silently=False,  # Se `False`, levanta um erro se o envio falhar
+
+
+
+# - password_reset envia o email
+# - password_reset_done mostra uma mensagem de sucesso para o envio do email
+# - password_reset_confirm checa a url e pergunta por uma nova senha
+# - password_reset_complete mostra uma mensagem de sucesso para todo o processo

@@ -4,6 +4,9 @@ from django.contrib import messages
 from .models import Empreendedor
 from .forms import EmpreendedorForm
 from .utils import criptografia, verificar_senha
+from django.core.mail import send_mail
+from django.utils.crypto import get_random_string
+from django.conf import settings
 
 
 
@@ -106,3 +109,49 @@ def index(request):
 def sobre(request):
     return render(request, "sobre.html")
 
+# Dicionário temporário para armazenar tokens (melhor usar um modelo ou cache)
+reset_tokens = {}
+
+
+def recuperar_senha(request):
+    """ Envia um e-mail com link para redefinir senha """
+    if request.method == "POST":
+        email = request.POST.get("email")
+
+        try:
+            empreendedor = Empreendedor.objects.get(email=email)
+            token = get_random_string(50)  # Gera um token aleatório
+            reset_tokens[token] = empreendedor.email  # Armazena o token temporariamente
+
+            reset_link = f"{request.build_absolute_uri('/resetar-senha/')}{token}/"
+            send_mail(
+                "Recuperação de Senha", # Assunto do e-mail
+                f"Olá, clique no link para redefinir sua senha: {reset_link}",  # Corpo do e-mail
+                settings.DEFAULT_FROM_EMAIL, # Remetente (configurado nas settings do Django)
+                [empreendedor.email],  # Lista de destinatários
+                fail_silently=False, # Se `False`, levanta um erro se o envio falhar
+            )
+            messages.success(request, "Um e-mail foi enviado com o link para redefinir sua senha.")
+        except Empreendedor.DoesNotExist:
+            messages.error(request, "E-mail não encontrado.")
+
+    return render(request, "recuperarsenha.html")
+
+
+def resetar_senha(request, token):
+    """ Redefine a senha usando o token enviado no e-mail """
+    if token not in reset_tokens:
+        messages.error(request, "Token inválido ou expirado.")
+        return redirect("recuperar_senha")
+
+    email = reset_tokens.pop(token)  # Recupera e remove o token
+    empreendedor = Empreendedor.objects.get(email=email)
+
+    if request.method == "POST":
+        nova_senha = request.POST.get("nova_senha")
+        empreendedor.senha = criptografia(nova_senha)  # Criptografa a nova senha
+        empreendedor.save()
+        messages.success(request, "Senha alterada com sucesso! Faça login com a nova senha.")
+        return redirect("login")
+
+    return render(request, "resetarsenha.html", {"token": token})
