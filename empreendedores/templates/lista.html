@@ -48,6 +48,7 @@
 </header>
 <br>
 <br>
+<main>
     <div class="container mt-5">
         <div class="card mb-4">
             <div class="card-header bg-primary text-white">
@@ -101,6 +102,7 @@
             </div>
         </div>
     </div>
+</main>
 
     <footer>
         <p>🌸 Criado com carinho para a comunidade 🌸</p>
@@ -122,6 +124,17 @@
 
 
 <style>
+
+html, body {
+    height: 100%; /* Garante que a altura total seja ocupada */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    flex: 1; /* Faz com que o conteúdo principal ocupe o espaço necessário */
+}
 /* Estilizando o card da lista */
 .card {
     border-radius: 12px; /* Bordas arredondadas para suavidade */
