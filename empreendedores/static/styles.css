@@ -128,25 +128,6 @@ form::before {
     color: #d48b94; /* Simboliza uma flor de cerejeira */
 }
 
-footer {
-    background-color: #d48b94; /* Rosa flor de cerejeira */
-    color: white; /* Texto branco para contraste */
-    text-align: center; /* Centraliza o conteúdo */
-    padding: 20px; /* Espaçamento interno */
-    position: relative;
-    font-size: 1rem; /* Tamanho padrão para o texto */
-    border-top: 1px solid #bf717d; /* Linha de separação */
-    width: 100%; /* Faz o footer ocupar toda a largura */
-}
 
-footer a {
-    color: white; /* Links no rodapé em branco */
-    text-decoration: none; /* Remove o sublinhado */
-    font-weight: bold; /* Destaca os links */
-    transition: color 0.3s; /* Transição suave na interação */
-}
-footer a:hover {
-    color: #fdf7f7; /* Tom mais claro ao passar o mouse */
-}
 
 
