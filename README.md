@@ -119,9 +119,13 @@ https://github.com/grbalmeida/rede-social-django/blob/master/bookmarks/account/t
 
 
 
-Para implementação futura 
+Para implementação futura login com google  
+https://console.cloud.google.com/auth/clients?project=enhanced-bebop-450717-q6
+
+https://console.cloud.google.com/auth/overview?project=enhanced-bebop-450717-q6
 
 https://medium.com/umcodigo/autentica%C3%A7%C3%A3o-com-google-no-django-5584458e1b4a
+
 
 ````py
     path('social-auth/', include('social_django.urls', namespace='social-auth')),
@@ -134,3 +138,10 @@ https://medium.com/umcodigo/autentica%C3%A7%C3%A3o-com-google-no-django-5584458e
  - password_reset_done mostra uma mensagem de sucesso para o envio do email
  - password_reset_confirm checa a url e pergunta por uma nova senha
  - password_reset_complete mostra uma mensagem de sucesso para todo o processo
+
+
+### algumas referecncias : 
+ https://medium.com/umcodigo/autentica%C3%A7%C3%A3o-com-google-no-django-5584458e1b4a
+
+
+https://docs.logto.io/pt-BR/tutorial/how-to-build-google-sign-in-with-python-and-logto

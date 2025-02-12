@@ -40,15 +40,22 @@
                     <a class="nav-link" href="{% url 'login' %}">Entrar</a>
                 </li>
             </ul>
+            
+            <form class="d-flex" method="GET" action="{% url 'lista_empreendedores' %}">
+                <input class="form-control me-2" type="search" placeholder="Buscar por nome ou serviço"  name="q" value="{{ request.GET.q }}" aria-label="Search" style="max-width: 300px;">
+                <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </form>
         </div>
     </div>
 </nav>
 <br><br><br><br>
 
 </header>
+
 <br>
 <br>
 <main>
+ 
     <div class="container mt-5">
         <div class="card mb-4">
             <div class="card-header bg-primary text-white">
@@ -121,6 +128,8 @@
             document.getElementById('modalTelefone').textContent = telefone;
             document.getElementById('modalEmail').textContent = email;
         }
+
+
     </script>
 
 
@@ -136,6 +145,8 @@ html, body {
 main {
     flex: 1; /* Faz com que o conteúdo principal ocupe o espaço necessário */
 }
+
+
 /* Estilizando o card da lista */
 .card {
     border-radius: 12px; /* Bordas arredondadas para suavidade */

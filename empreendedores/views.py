@@ -98,7 +98,16 @@ def delete_empreendedor(request, empreendedor_id):
 
 
 def lista_empreendedores(request):
-    empreendedores = Empreendedor.objects.all()
+    query = request.GET.get('q')  # Captura o termo da pesquisa
+    if query:
+        empreendedores = Empreendedor.objects.filter(
+            nome__icontains=query
+        ) | Empreendedor.objects.filter(
+            servico__icontains=query
+        )
+    else:
+    
+        empreendedores = Empreendedor.objects.all()
     return render(request, "lista.html", {"empreendedores": empreendedores})
 
 
