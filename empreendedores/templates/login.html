@@ -41,6 +41,7 @@
         </div>
     </div>
 </nav>
+<br><br><br><br><br>
 <body style="background-color: #fdf7f7; ">
     <main>
     <form method="POST">
@@ -56,6 +57,12 @@
         <div class="d-flex justify-content-center gap-3 mt-4">
         <button type="submit" class="btn btn-outline-primary">Entrar</button>
         </div>
+        <br>
+        <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-outline-secondary">
+            <img src="{% static 'google_logo.png' %}" alt="Logotipo Google" style="width: 20px; height: 20px;">
+            Login com Google
+        </a>
+        <br><br>
         <p class="text-center mt-3">
             <a href="{% url 'recuperar_senha' %}">Esqueci minha senha</a>
         </p>

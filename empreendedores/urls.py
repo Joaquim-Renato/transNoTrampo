@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -16,6 +16,7 @@ urlpatterns = [
     path("sobre/", views.sobre, name="sobre"),
     path("recuperar-senha/", views.recuperar_senha, name="recuperar_senha"),
     path("resetar-senha/<str:token>/", views.resetar_senha, name="resetar_senha"),
+    path('social-auth/', include('social_django.urls', namespace='social-auth')),
  
 ]
 

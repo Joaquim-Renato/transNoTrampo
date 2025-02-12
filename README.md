@@ -119,7 +119,18 @@ https://github.com/grbalmeida/rede-social-django/blob/master/bookmarks/account/t
 
 
 
-# - password_reset envia o email
-# - password_reset_done mostra uma mensagem de sucesso para o envio do email
-# - password_reset_confirm checa a url e pergunta por uma nova senha
-# - password_reset_complete mostra uma mensagem de sucesso para todo o processo
+Para implementação futura 
+
+https://medium.com/umcodigo/autentica%C3%A7%C3%A3o-com-google-no-django-5584458e1b4a
+
+````py
+    path('social-auth/', include('social_django.urls', namespace='social-auth')),
+````
+
+
+
+
+- password_reset envia o email
+ - password_reset_done mostra uma mensagem de sucesso para o envio do email
+ - password_reset_confirm checa a url e pergunta por uma nova senha
+ - password_reset_complete mostra uma mensagem de sucesso para todo o processo
