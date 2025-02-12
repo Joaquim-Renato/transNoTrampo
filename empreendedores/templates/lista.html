@@ -41,7 +41,7 @@
                 </li>
             </ul>
             
-        <form class="box-search" method="GET" action="{% url 'lista_empreendedores' %}">
+        <form class="d-flex ms-auto" method="GET" action="{% url 'lista_empreendedores' %}">
             <input type="text" class="campo-search" type="search"  placeholder="Pesquisar..."  name="q" value="{{ request.GET.q }}" >
             <button class="btn btn-outline-success" type="submit"> <i class="bi bi-search"></i>Pesquisar</button>
         </form>
