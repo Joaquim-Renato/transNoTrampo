@@ -41,7 +41,7 @@
         <div class="profile-container">
             <div class="profile-header">
                 {% if empreendedor.foto_perfil %}
-                    <img src="{{ empreendedor.foto_perfil.url }}" alt="Foto de {{ empreendedor.nome }}">
+                    <img src="{{ MEDIA_URL }}{{ empreendedor.foto_perfil.url }}" alt="Foto de {{ empreendedor.nome }}">
                 {% else %}
                     <img src="https://via.placeholder.com/100" alt="Sem foto de perfil">
                 {% endif %}
