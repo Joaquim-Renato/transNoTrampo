@@ -8,4 +8,5 @@ class EmpreendedorForm(forms.ModelForm):
         fields = ['nome', 'idade', 'identidadegenero', 'telefone', 'email', 'senha', 'servico', 'descricao', 'foto_perfil']
         widgets = {
             'senha': forms.PasswordInput(),
+            
         }
