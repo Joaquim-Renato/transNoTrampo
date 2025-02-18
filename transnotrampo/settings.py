@@ -128,7 +128,7 @@ USE_TZ = True
 LOGIN_URL = 'login'  # Se estiver usando um caminho como '/accounts/login/', altere para o nome correto
 LOGIN_REDIRECT_URL = '/perfil/'
 LOGOUT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'logout'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -139,7 +139,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = [BASE_DIR / 'media']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
