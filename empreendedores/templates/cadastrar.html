@@ -51,8 +51,81 @@
    <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
+
+     <!-- Checkbox para aceitar os termos -->
+     <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="aceitarTermos">
+        <label class="form-check-label">
+            Eu li e aceito a <a href="#" data-bs-toggle="modal" data-bs-target="#modalTermos">Política de Privacidade</a>.
+        </label>
+    </div>
+
     <button type="submit">Cadastrar</button>
 </form>
+
+    <!-- Modal da Política de Privacidade -->
+    <div class="modal fade" id="modalTermos" tabindex="-1" aria-labelledby="modalTermosLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTermosLabel">Política de Privacidade</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Política Privacidade  <br>
+                        A sua privacidade é importante para nós. <br>
+                        É política do Trans No Trampo respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site Trans No Trampo, e outros sites que possuímos e operamos.
+                        <br>
+                        Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. 
+                        <br>
+                        Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento. 
+                        <br>
+                        Também informamos por que estamos coletando e como será usado.Apenas retemos as informações coletadas pelo tempo necessário para fornecer o serviço solicitado. 
+                        <br>
+                        Quando armazenamos dados, protegemos dentro de meios comercialmente aceitáveis ​​para evitar perdas e roubos, bem como acesso, divulgação, cópia, uso ou modificação não autorizados.
+                        <br>
+                        Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei.
+                        <br>
+                        O nosso site pode ter links para sites externos que não são operados por nós. 
+                        <br>
+                        Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade por suas respectivas políticas de privacidade.
+                        <br>
+                        Você é livre para recusar a nossa solicitação de informações pessoais, entendendo que talvez não possamos fornecer alguns dos serviços desejados.
+                        <br>
+                        O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de privacidade e informações pessoais. 
+                        <br>
+                        Se você tiver alguma dúvida sobre como lidamos com dados do usuário e informações pessoais, entre em contacto connosco.
+                        <br>
+                        O serviço Google AdSense que usamos para veicular publicidade usa um cookie DoubleClick para veicular anúncios mais relevantes em toda a Web e limitar o número de vezes que um determinado anúncio é exibido para você.
+                        <br>
+                        Para mais informações sobre o Google AdSense, consulte as FAQs oficiais sobre privacidade do Google AdSense.
+                        <br>
+                        Utilizamos anúncios para compensar os custos de funcionamento deste site e fornecer financiamento para futuros desenvolvimentos. 
+                        <br>
+                        Os cookies de publicidade comportamental usados ​​por este site foram projetados para garantir que você forneça os anúncios mais relevantes sempre que possível, rastreando anonimamente seus interesses e apresentando coisas semelhantes que possam ser do seu interesse.
+                        <br>
+                        Vários parceiros anunciam em nosso nome e os cookies de rastreamento de afiliados simplesmente nos permitem ver se nossos clientes acessaram o site através de um dos sites de nossos parceiros, para que possamos creditá-los adequadamente e, quando aplicável, permitir que nossos parceiros afiliados ofereçam qualquer promoção que pode fornecê-lo para fazer uma compra.
+                        <br>
+                         <strong>Compromisso do Usuário</strong>
+                        <br>
+                        O usuário se compromete a fazer uso adequado dos conteúdos e da informação que o Trans No Trampo oferece no site e com caráter enunciativo, mas não limitativo:
+                        <br>
+                        A) Não se envolver em atividades que sejam ilegais ou contrárias à boa fé a à ordem pública;
+                        <br>
+                        B) Não difundir propaganda ou conteúdo de natureza racista, xenofóbica, bbebbet ou azar, qualquer tipo de pornografia ilegal, de apologia ao terrorismo ou contra os direitos humanos;
+                        <br>
+                        C) Não causar danos aos sistemas físicos (hardwares) e lógicos (softwares) do Trans No Trampo, de seus fornecedores ou terceiros, para introduzir ou disseminar vírus informáticos ou quaisquer outros sistemas de hardware ou software que sejam capazes de causar danos anteriormente mencionados.
+                        <br>
+                        Mais informaçõesEsperemos que esteja esclarecido e, como mencionado anteriormente, se houver algo que você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que você usa em nosso site.
+                        <br>
+                        Esta política é efetiva a partir de 18 February 2025 17:14</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <br>
 <div class="d-flex justify-content-center gap-3 mt-4">
   <a href="{% url 'login' %}" class="btn btn-outline-dark">Logar</a>
@@ -62,12 +135,43 @@
 <br>
 <br><br>
 
-<footer>
 
+<footer>
     <p>🌸 Criado com carinho para a comunidade 🌸</p>
-    <p >&copy; 2025 Trans no Trampo. Todos os direitos reservados.</p>
-   
+    <p class="footer-creditos">© 2024 Todos os direitos reservados.</p>
 </footer>
+
+
+<script>
+    document.getElementById("cadastroForm").addEventListener("submit", function(event) {
+        let checkbox = document.getElementById("aceitarTermos");
+        if (!checkbox.checked) {
+            alert("Você deve aceitar a Política de Privacidade para continuar.");
+            event.preventDefault(); // Impede o envio do formulário
+        }
+    });
+</script>
 
   </body>
 </html>
+
+<style>
+    footer {
+        background-color: white; 
+        color: #d48b94;
+        text-align: center; /* Centraliza o conteúdo */
+        padding: 1px; /* Espaçamento interno */
+        font-size: 1.3rem; /* Tamanho padrão para o texto */
+        border-top: 1px solid #bf717d; /* Linha de separação */
+        width: 100%; /* Faz o footer ocupar toda a largura */
+        box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave superior */
+        position: relative;
+    }
+    
+    /* Texto menor para créditos */
+    .footer-creditos {
+        font-size: 0.9rem;
+        margin-top: 10px;
+        opacity: 0.8; /* Levemente mais opaco */
+    }
+</style>
