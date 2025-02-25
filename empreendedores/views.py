@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Empreendedor
 from .forms import EmpreendedorForm
+from .formsedit import EmpreendedorEdicaoForm
 from .utils import criptografia, verificar_senha
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
@@ -70,19 +71,24 @@ def edit_empreendedor(request, empreendedor_id):
     empreendedor = get_object_or_404(Empreendedor, id=empreendedor_id)
    
     if request.method == "POST":
-        formulario = EmpreendedorForm(request.POST, instance=empreendedor)
+        formulario = EmpreendedorEdicaoForm(request.POST, request.FILES, instance=empreendedor)
         
         if formulario.is_valid():
             senha = formulario.cleaned_data.get("senha")
-            empreendedor.senha = criptografia(senha)
+            if senha:
+                empreendedor.senha = criptografia(senha)  # Criptografe a senha, se fornecida
+            
+            # Salve as alterações
             formulario.save()
+            
             messages.success(request, "Dados atualizados com sucesso!")
-            next_url = request.GET.get('next', 'perfil_empreendedor')
+            next_url = request.GET.get('next', 'perfil_empreendedor')  # Se existir 'next' na URL, redireciona para lá
             return redirect(next_url, empreendedor_id=empreendedor.id)
         else:
             messages.error(request, "Erro ao atualizar os dados.")
     else:
-        formulario = EmpreendedorForm(instance=empreendedor)
+        # Caso o método seja GET, apenas preenche o formulário com os dados atuais
+        formulario = EmpreendedorEdicaoForm(instance=empreendedor)
     
     return render(request, 'editar.html', {'form': formulario, 'empreendedor': empreendedor})
 
