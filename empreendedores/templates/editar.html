@@ -28,8 +28,9 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }} <!-- Exibe o formulário -->
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
             <br><br>
+            
             <a href="{% url 'perfil_empreendedor' empreendedor.id %}" class="btn btn-danger">Cancelar</a>
         </form>
    
