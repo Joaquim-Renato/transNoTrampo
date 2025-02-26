@@ -3,12 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Empreendedor
 from .forms import EmpreendedorForm
-from .formsedit import EmpreendedorEdicaoForm
+from .formsedit import EmpreendedorEdicaoForm  # Formulário de edição
 from .utils import criptografia, verificar_senha
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
 from django.conf import settings
-
 
 
 
@@ -74,20 +73,19 @@ def edit_empreendedor(request, empreendedor_id):
         formulario = EmpreendedorEdicaoForm(request.POST, request.FILES, instance=empreendedor)
         
         if formulario.is_valid():
+
             senha = formulario.cleaned_data.get("senha")
             if senha:
-                empreendedor.senha = criptografia(senha)  # Criptografe a senha, se fornecida
-            
-            # Salve as alterações
+                empreendedor.senha = criptografia(senha)
+
             formulario.save()
-            
+
             messages.success(request, "Dados atualizados com sucesso!")
-            next_url = request.GET.get('next', 'perfil_empreendedor')  # Se existir 'next' na URL, redireciona para lá
+            next_url = request.GET.get('next', 'perfil_empreendedor')
             return redirect(next_url, empreendedor_id=empreendedor.id)
         else:
             messages.error(request, "Erro ao atualizar os dados.")
     else:
-        # Caso o método seja GET, apenas preenche o formulário com os dados atuais
         formulario = EmpreendedorEdicaoForm(instance=empreendedor)
     
     return render(request, 'editar.html', {'form': formulario, 'empreendedor': empreendedor})
@@ -170,3 +168,4 @@ def resetar_senha(request, token):
         return redirect("login")
 
     return render(request, "resetarsenha.html", {"token": token})
+    

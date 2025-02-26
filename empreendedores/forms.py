@@ -28,3 +28,4 @@ class EmpreendedorForm(forms.ModelForm):
             raise forms.ValidationError("As senhas não coincidem. Digite novamente.")
 
         return cleaned_data
+

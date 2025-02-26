@@ -130,6 +130,12 @@ LOGIN_REDIRECT_URL = '/perfil/'
 LOGOUT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'logout'
 
+# Mantém o usuário logado por 14 dias
+SESSION_COOKIE_AGE = 1209600  # 14 dias em segundos
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Sessão não expira ao fechar o navegador
+SESSION_SAVE_EVERY_REQUEST = True  # Atualiza o tempo da sessão a cada requisição
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 # Configurações de arquivos estáticos e mídia:
