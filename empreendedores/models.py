@@ -10,7 +10,7 @@ class Empreendedor(models.Model):
         ('mulher_trans', 'Mulher Transgênero'),
         ('nao_binario', 'Não Binário'),
         ('outro', 'Outro'),
-        ('prefiro_nao_dizer', 'Prefiro não dizer'),
+       
     ]
         
         id = models.AutoField(primary_key=True)
