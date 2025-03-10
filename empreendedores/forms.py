@@ -13,7 +13,7 @@ class EmpreendedorForm(forms.ModelForm):
         model = Empreendedor
         fields = [
         'nome', 'idade', 'identidadegenero', 'telefone', 'email', 'senha', 
-        'confirmacao_senha', 'servico', 'descricao', 'foto_perfil']
+        'confirmacao_senha', 'servico', 'descricao' , 'cidade', 'estado', 'foto_perfil']
         widgets = {
             'senha': forms.PasswordInput(),
             'identidadegenero': forms.Select(attrs={'class': 'form-control'}),

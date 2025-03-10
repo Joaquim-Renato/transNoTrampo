@@ -27,6 +27,7 @@ class Empreendedor(models.Model):
         descricao = models.TextField(verbose_name="Descrição do Serviço")
         data_cadastro = models.DateTimeField(auto_now_add=True, verbose_name="Data de Cadastro")
         foto_perfil = models.ImageField(upload_to='perfil_fotos/', blank=True, null=True, verbose_name="Foto de Perfil")
-
+        cidade = models.CharField(max_length=100, verbose_name="Cidade", blank=True, null=True)
+        estado = models.CharField(max_length=2, verbose_name="Estado", blank=True, null=True) 
         def __str__(self):
             return self.nome  # Exibindo o nome do usuário (Empreendedor)

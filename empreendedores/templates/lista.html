@@ -1,67 +1,74 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="{% static 'favicon/lista.png' %}"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="{% static 'favicon/lista.png' %}" />
     <title>Lista de Empreendedores</title>
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-        crossorigin="anonymous"
-    />
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"
-    ></script>
-</head>
-<body style="background-color: #f8ceeb;">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </head>
+  <body style="background-color: #f8ceeb;">
     <header>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">🌸Trans No Trampo</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'sobre' %}">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'cadastrar_empreendedor' %}">Cadastre-se</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Entrar</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex ms-auto" method="GET" action="{% url 'lista_empreendedores' %}">
-                        <input type="text" class="campo-search" placeholder="Pesquisar..." name="q" value="{{ request.GET.q }}">
-                        <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-                    </form>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">🌸Trans No Trampo</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'sobre' %}">Sobre</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'cadastrar_empreendedor' %}">Cadastre-se</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Entrar</a>
+              </li>
+            </ul>
+            <!-- Formulário de Pesquisa e Filtro -->
+            <form method="GET" action="{% url 'lista_empreendedores' %}" class="d-flex ms-auto">
+              <div class="row g-3">
+                <!-- Campo de Pesquisa (Nome ou Serviço) -->
+                <div class="col-md-4">
+                  <input type="text" class="form-control" name="q" placeholder="Pesquisar por nome ou serviço" value="{{ request.GET.q }}" />
                 </div>
-            </div>
-        </nav>
-        <br><br><br><br>
+                <!-- Filtro de Cidade -->
+                <div class="col-md-3">
+                  <input type="text" class="form-control" name="cidade" placeholder="Cidade" value="{{ request.GET.cidade }}" />
+                </div>
+                <!-- Filtro de Estado -->
+                <div class="col-md-3">
+                  <input type="text" class="form-control" name="estado" placeholder="Estado (ex: SP)" value="{{ request.GET.estado }}" />
+                </div>
+                <!-- Botão de Submissão -->
+                <div class="col-md-2">
+                  <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+                  <i class="bi bi-search"></i> 
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <br /><br /><br /><br />
     </header>
 
     <main>
-        <div class="container mt-5">
-            <div class="card mb-4">
-                <div class="card-header bg-primary text-white">
-                    Lista de Empreendedores
-                </div>
-                <div class="card-body">
-                    <ul class="list-group">
-                        {% for empreendedor in empreendedores %}
-                            <li class="list-group-item">
-                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalEmpreendedor"
-                                   onclick="abrirModal(
+      <div class="container mt-5">
+        <div class="card mb-4">
+          <div class="card-header bg-primary text-white">Lista de Empreendedores</div>
+          <div class="card-body">
+            <ul class="list-group">
+              {% for empreendedor in empreendedores %}
+                <li class="list-group-item">
+                  <a href="#"
+                    class="text-decoration-none"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalEmpreendedor"
+                    onclick="abrirModal(
                                        '{{ empreendedor.nome }}',
                                        '{{ empreendedor.idade }}',
                                        '{{ empreendedor.identidadegenero }}',
@@ -69,115 +76,146 @@
                                        '{{ empreendedor.descricao }}',
                                        '{{ empreendedor.telefone }}',
                                        '{{ empreendedor.email }}',
-                                       {% if empreendedor.foto_perfil %} '{{ empreendedor.foto_perfil.url }}' {% else %} '' {% endif %}
-                                   )">
-                                    <h3 class="mb-2">{{ empreendedor.nome }}</h3>
-                                    <p><strong>Serviço:</strong> {{ empreendedor.servico }}</p>
-                                    <p><strong>Descrição:</strong> {{ empreendedor.descricao }}</p>
-                                </a>
-                            </li>
-                        {% empty %}
-                            <li class="list-group-item">
-                                Nenhum empreendedor cadastrado.
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="card-footer text-center">
-                    <a href="{% url 'cadastrar_empreendedor' %}" class="btn btn-primary mb-2">Cadastrar Novo Empreendedor</a>
-                    <br>
-                    <a href="/" class="btn btn-danger">Voltar para Página Inicial</a>
-                </div>
-            </div>
-        </div>
+                                       {% if empreendedor.foto_perfil %}
+                       '{{ empreendedor.foto_perfil.url }}' 
 
-        <!-- Modal -->
-        <div class="modal fade" id="modalEmpreendedor" tabindex="-1" aria-labelledby="modalEmpreendedorLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalEmpreendedorLabel">Perfil do Empreendedor</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <!-- Coluna da Foto de Perfil -->
-                            <div class="col-md-4 text-center">
-                                <img id="modalFotoPerfil" src="" alt="Foto de Perfil" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
-                            </div>
-                            <!-- Coluna das Informações -->
-                            <div class="col-md-8">
-                                <p><strong>Nome:</strong> <span id="modalNome"></span></p>
-                                <p><strong>Idade:</strong> <span id="modalIdade"></span></p>
-                                <p><strong>Identidade de Gênero:</strong> <span id="modalIdentidadeGenero"></span></p>
-                                <p><strong>Serviço:</strong> <span id="modalServico"></span></p>
-                                <p><strong>Descrição:</strong> <span id="modalDescricao"></span></p>
-                                <p><strong>Telefone:</strong> <span id="modalTelefone"></span></p>
-                                <p><strong>Email:</strong> <span id="modalEmail"></span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    </div>
-                </div>
-            </div>
+                    {% else %}
+                       ''
+                    {% endif %},
+                                       '{{ empreendedor.cidade }}',
+                                       '{{ empreendedor.estado }}'
+                                   )">
+                    <h3 class="mb-2">{{ empreendedor.nome }}</h3>
+                    <p>
+                      <strong>Serviço:</strong> {{ empreendedor.servico }}
+                    </p>
+                    <p>
+                      <strong>Localização:</strong> {{ empreendedor.cidade }}, {{ empreendedor.estado }}
+                    </p>
+                    <p>
+                      <strong>Descrição:</strong> {{ empreendedor.descricao }}
+                    </p>
+                  </a>
+                </li>
+              {% empty %}
+                <li class="list-group-item">Nenhum empreendedor cadastrado.</li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="card-footer text-center">
+            <a href="{% url 'cadastrar_empreendedor' %}" class="btn btn-primary mb-2">Cadastrar Novo Empreendedor</a>
+            <br />
+            <a href="/" class="btn btn-danger">Voltar para Página Inicial</a>
+          </div>
         </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modalEmpreendedor" tabindex="-1" aria-labelledby="modalEmpreendedorLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalEmpreendedorLabel">Perfil do Empreendedor</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <!-- Coluna da Foto de Perfil -->
+                <div class="col-md-4 text-center">
+                  <img id="modalFotoPerfil" src="" alt="Foto de Perfil" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;" />
+                </div>
+                <!-- Coluna das Informações -->
+                <div class="col-md-8">
+                  <p>
+                    <strong>Nome:</strong> <span id="modalNome"></span>
+                  </p>
+                  <p>
+                    <strong>Idade:</strong> <span id="modalIdade"></span>
+                  </p>
+                  <p>
+                    <strong>Identidade de Gênero:</strong> <span id="modalIdentidadeGenero"></span>
+                  </p>
+                  <p>
+                    <strong>Serviço:</strong> <span id="modalServico"></span>
+                  </p>
+                  <p>
+                    <strong>Localização:</strong> <span id="modalCidade"></span>, <span id="modalEstado"></span>
+                  </p>
+                  <p>
+                    <strong>Descrição:</strong> <span id="modalDescricao"></span>
+                  </p>
+                  <p>
+                    <strong>Telefone:</strong> <span id="modalTelefone"></span>
+                  </p>
+                  <p>
+                    <strong>Email:</strong> <span id="modalEmail"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer>
-        <p>🌸 Criado com carinho para a comunidade 🌸</p>
-        <p class="footer-creditos">© 2024 Todos os direitos reservados.</p>
+      <p>🌸 Criado com carinho para a comunidade 🌸</p>
+      <p class="footer-creditos">© 2024 Todos os direitos reservados.</p>
     </footer>
 
     <script>
-        function abrirModal(nome, idade, identidadeGenero, servico, descricao, telefone, email, fotoPerfil) {
-            // Preenche os campos do modal com os dados do empreendedor
-            document.getElementById('modalNome').textContent = nome;
-            document.getElementById('modalIdade').textContent = idade;
-            document.getElementById('modalIdentidadeGenero').textContent = identidadeGenero;
-            document.getElementById('modalServico').textContent = servico;
-            document.getElementById('modalDescricao').textContent = descricao;
-            document.getElementById('modalTelefone').textContent = telefone;
-            document.getElementById('modalEmail').textContent = email;
-
-            // Atualiza a foto de perfil
-            const fotoPerfilElement = document.getElementById('modalFotoPerfil');
-            if (fotoPerfil) {
-                fotoPerfilElement.src = fotoPerfil; // Define o src da imagem
-                fotoPerfilElement.style.display = 'block'; // Exibe a imagem
-            } else {
-                fotoPerfilElement.style.display = 'none'; // Oculta a imagem se não houver foto
-            }
+      function abrirModal(nome, idade, identidadeGenero, servico, descricao, telefone, email, fotoPerfil) {
+        // Preenche os campos do modal com os dados do empreendedor
+        document.getElementById('modalNome').textContent = nome
+        document.getElementById('modalIdade').textContent = idade
+        document.getElementById('modalIdentidadeGenero').textContent = identidadeGenero
+        document.getElementById('modalServico').textContent = servico
+        document.getElementById('modalDescricao').textContent = descricao
+        document.getElementById('modalTelefone').textContent = telefone
+        document.getElementById('modalEmail').textContent = email
+        document.getElementById('modalCidade').textContent = cidade
+        document.getElementById('modalEstado').textContent = estado
+      
+        // Atualiza a foto de perfil
+        const fotoPerfilElement = document.getElementById('modalFotoPerfil')
+        if (fotoPerfil) {
+          fotoPerfilElement.src = fotoPerfil // Define o src da imagem
+          fotoPerfilElement.style.display = 'block' // Exibe a imagem
+        } else {
+          fotoPerfilElement.style.display = 'none' // Oculta a imagem se não houver foto
         }
+      }
     </script>
-</body>
+  </body>
 </html>
 
-
 <style>
-
-html, body {
+  html,
+  body {
     height: 100%; /* Garante que a altura total seja ocupada */
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-}
-main {
+  }
+  main {
     flex: 1; /* Faz com que o conteúdo principal ocupe o espaço necessário */
-}
-
-/* Estilizando o card da lista */
-.card {
+  }
+  
+  
+  /* Estilizando o card da lista */
+  .card {
     border-radius: 12px; /* Bordas arredondadas para suavidade */
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     border: 3px solid #e0c3c3; /* Borda delicada */
     background-color: #fdf2f4; /* Fundo rosa pálido */
-}
-
-/* Cabeçalho do card */
-.card-header {
+  }
+  
+  /* Cabeçalho do card */
+  .card-header {
     background-color: #d48b94 !important; /* Rosa flor de cerejeira */
     color: white !important;
     font-size: 1.8rem;
@@ -185,91 +223,90 @@ main {
     text-align: center;
     padding: 16px;
     border-radius: 12px 12px 0 0; /* Mantém bordas arredondadas */
-}
-
-/* Lista de Empreendedores */
-.list-group {
+  }
+  
+  /* Lista de Empreendedores */
+  .list-group {
     border-radius: 0 0 12px 12px;
     overflow: hidden; /* Garante que os itens sigam o contorno do card */
-}
-
-/* Estilizando os itens da lista */
-.list-group-item {
+  }
+  
+  /* Estilizando os itens da lista */
+  .list-group-item {
     background-color: #fff; /* Fundo branco */
     border: none;
     border-bottom: 1px solid #e0b0b0; /* Borda rosa suave */
     padding: 20px;
     transition: background-color 0.3s ease-in-out;
-}
-
-/* Efeito hover nos itens da lista */
-.list-group-item:hover {
+  }
+  
+  /* Efeito hover nos itens da lista */
+  .list-group-item:hover {
     background-color: #fdf7f7; /* Tom mais claro ao passar o mouse */
-}
-
-/* Links clicáveis */
-.list-group-item a {
+  }
+  
+  /* Links clicáveis */
+  .list-group-item a {
     text-decoration: none;
     color: #8b5e63; /* Cor suave inspirada em galhos de cerejeira */
     display: block;
-}
-
-/* Nome do empreendedor */
-.list-group-item h3 {
+  }
+  
+  /* Nome do empreendedor */
+  .list-group-item h3 {
     font-size: 1.8rem;
     margin-bottom: 5px;
     font-weight: bold;
     color: #9c5b6d; /* Tom inspirado em flores de cerejeira */
-}
-
-/* Parágrafos dentro da lista */
-.list-group-item p {
+  }
+  
+  /* Parágrafos dentro da lista */
+  .list-group-item p {
     font-size: 1rem;
     margin-bottom: 5px;
     color: #7a4f52; /* Tom mais fechado para legibilidade */
-}
-
-/* Nenhum empreendedor cadastrado */
-.list-group-item:last-child {
+  }
+  
+  /* Nenhum empreendedor cadastrado */
+  .list-group-item:last-child {
     text-align: center;
     font-style: italic;
     color: #8b5e63;
-}
-
-
-.modal-content {
+  }
+  
+  .modal-content {
     background-color: #fdf2f4; /* Fundo rosa pálido */
     border-radius: 12px; /* Bordas arredondadas */
     padding: 20px;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Sombra leve */
-}
-
-.modal-header {
+  }
+  
+  .modal-header {
     background-color: #d48b94; /* Cor rosa para destaque */
     color: white;
     border-radius: 12px 12px 0 0;
     padding: 15px;
-}
-
-.modal-title {
+  }
+  
+  .modal-title {
     font-weight: bold;
-}
-
-.modal-body p {
+  }
+  
+  .modal-body p {
     font-size: 1rem;
     color: #8b5e63; /* Cor suave para os textos */
     margin-bottom: 10px;
-}
-
-.modal-footer {
+  }
+  
+  .modal-footer {
     background-color: #fdf7f7;
     border-radius: 0 0 12px 12px;
     padding: 15px;
-}
-
-/* Estilizando o Footer */
-footer {
-    background-color: white; 
+  }
+  
+  /* Estilizando o Footer */
+  footer {
+    background-color: white;
     color: #d48b94;
     text-align: center; /* Centraliza o conteúdo */
     padding: 1px; /* Espaçamento interno */
@@ -278,15 +315,12 @@ footer {
     width: 100%; /* Faz o footer ocupar toda a largura */
     box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave superior */
     position: relative;
-}
-
-/* Texto menor para créditos */
-.footer-creditos {
+  }
+  
+  /* Texto menor para créditos */
+  .footer-creditos {
     font-size: 0.9rem;
     margin-top: 10px;
     opacity: 0.8; /* Levemente mais opaco */
-}
-
-
+  }
 </style>
-
