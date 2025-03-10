@@ -13,7 +13,7 @@ from django.conf import settings
 
 def cadastrar_empreendedor(request):
     if request.method == "POST":
-        formulario = EmpreendedorForm(request.POST)
+        formulario = EmpreendedorForm(request.POST, request.FILES)
         if formulario.is_valid():
             empreendedor = formulario.save(commit=False)
             senha = formulario.cleaned_data.get("senha")
