@@ -87,13 +87,13 @@
         </a>
         
     </div>
-    <div class="container text-center mt-5">
-        <h1>Olá, seja bem-vinde! :D</h1>
 
-        <h2>O que você quer fazer primeiro?</h2>
+<div class="container text-center mt-5">
+    <h1>Olá, seja bem-vinde! :D</h1>
+    <h2>O que você quer fazer primeiro?</h2>
 
-        <!-- Botões com ícones -->
-    <div class="d-flex justify-content-center gap-3 mt-4">
+     <!-- Botões com ícones -->
+     <div class="d-flex justify-content-center gap-3 mt-4">
         <a href="cadastrar/" class="btn btn-secondary">
             <i class="fas fa-plus-circle"></i> Seja um profissional
         </a>
@@ -104,6 +104,18 @@
             <i class="fas fa-search"></i> Ver os serviços disponíveis
         </a>
        
+    </div>
+      <!-- Card Chamativo para a Página "Sobre" -->
+      <div class="container mt-5">
+        <div class="card border-0 shadow-lg text-center py-4" style="background-color: #f8d7e6; border-radius: 15px;">
+            <div class="card-body">
+                <h2 class="card-title" style="color: #8b5e63;">Conheça mais sobre o nosso projeto!</h2>
+                <p class="card-text" style="color: #7a4f52;">Descubra como estamos transformando a realidade de trabalhadores e empreendedores trans.</p>
+                <a href="{% url 'sobre' %}" class="btn btn-lg" style="background-color: #d48b94; color: white; border: none;">
+                    <i class="fas fa-info-circle"></i> Saiba Mais
+                </a>
+            </div>
+        </div>
     </div>
     <!-- Seção de Links Úteis -->
 
@@ -173,6 +185,34 @@
   .carousel-control-next-icon {
     filter: invert(1); /* Garante que os ícones fiquem visíveis */
   }
+
+  /* Estilo do card chamativo */
+  .card.bg-primary {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card.bg-primary .btn-light {
+    background-color: white;
+    color: #0d6efd; /* Cor do botão */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.card.bg-primary .btn-light:hover {
+    background-color: #f; /* Cor de fundo ao passar o mouse */
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+    .card.bg-primary {
+        padding: 20px;
+    }
+    .card.bg-primary .btn-light {
+        width: 100%;
+    }
+}
 
   /* Estilização dos cartões ilustrativos */
 .info-card {
