@@ -89,11 +89,12 @@
                     <p>
                       <strong>Serviço:</strong> {{ empreendedor.servico }}
                     </p>
-                    <p>
-                      <strong>Localização:</strong> {{ empreendedor.cidade }}, {{ empreendedor.estado }}
-                    </p>
+                    
                     <p>
                       <strong>Descrição:</strong> {{ empreendedor.descricao }}
+                    </p>
+                    <p>
+                      <strong>Localização:</strong> {{ empreendedor.cidade }}, {{ empreendedor.estado }}
                     </p>
                   </a>
                 </li>
@@ -139,9 +140,6 @@
                     <strong>Serviço:</strong> <span id="modalServico"></span>
                   </p>
                   <p>
-                    <strong>Localização:</strong> <span id="modalCidade"></span>, <span id="modalEstado"></span>
-                  </p>
-                  <p>
                     <strong>Descrição:</strong> <span id="modalDescricao"></span>
                   </p>
                   <p>
@@ -149,6 +147,9 @@
                   </p>
                   <p>
                     <strong>Email:</strong> <span id="modalEmail"></span>
+                  </p>
+                  <p>
+                    <strong>Localização:</strong> <span id="modalCidade"></span>, <span id="modalEstado"></span>
                   </p>
                 </div>
               </div>
@@ -167,7 +168,7 @@
     </footer>
 
     <script>
-      function abrirModal(nome, idade, identidadeGenero, servico, descricao, telefone, email, fotoPerfil) {
+      function abrirModal(nome, idade, identidadeGenero, servico, descricao, telefone, email, fotoPerfil,  cidade, estado) {
         // Preenche os campos do modal com os dados do empreendedor
         document.getElementById('modalNome').textContent = nome
         document.getElementById('modalIdade').textContent = idade
