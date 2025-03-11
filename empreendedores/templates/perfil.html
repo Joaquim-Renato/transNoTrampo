@@ -57,10 +57,13 @@
                 <h2>Bem-vinde, {{ empreendedor.nome }}!</h2>
             </div>
             <hr>
-            <p><strong>Email:</strong> {{ empreendedor.email }}</p>
-            <p><strong>Idade:</strong> {{ empreendedor.idade }}</p>
-            <p><strong>Serviço:</strong> {{ empreendedor.servico }}</p>
-            <p><strong>Descrição:</strong> {{ empreendedor.descricao }}</p>
+            <p><strong>Email: </strong> {{ empreendedor.email }}</p>
+            <p><strong>Telefone: </strong> {{ empreendedor.telefone  }}</p>
+            <p><strong>Idade: </strong> {{ empreendedor.idade }}</p>
+            <p><strong>Identidade de Gênero: </strong> {{empreendedor.identidadegenero}}</p>
+            <p><strong>Serviço: </strong> {{ empreendedor.servico }}</p>
+            <p><strong>Descrição: </strong> {{ empreendedor.descricao }}</p>
+            <p><strong>Localização: </strong>{{empreendedor.cidade}} - {{empreendedor.estado}}</p>
             
             <div class="profile-buttons">
                 <a href="{% url 'edit_empreendedor' empreendedor.id %}" class="btn btn-primary">Editar Perfil</a>
