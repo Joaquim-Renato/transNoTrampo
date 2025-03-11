@@ -94,10 +94,10 @@
 
      <!-- Botões com ícones -->
      <div class="d-flex justify-content-center gap-4 mt-4">
-        <!-- Card para "Seja um profissional" -->
+        <!-- ícone para "Cadastre-se" -->
         <a href="cadastrar/" class="icon-card">
             <div class="icon-container" style="background-color: white;">
-                <img src="{% static 'icons/iconCadastro.png' %}" alt="Seja um profissional" class="icon-img">
+                <img src="{% static 'icons/iconCadastro.png' %}" alt="Cadastre-se" class="icon-img">
             </div>
             <p class="mt-2">Cadastre-se</p>
         </a>
@@ -105,7 +105,7 @@
         <!-- Card para "Entrar" -->
         <a href="login/" class="icon-card">
             <div class="icon-container" style="background-color: white;">
-                <img src="{% static 'icons/login.png' %}" alt="Entrar" class="icon-img">
+                <img src="{% static 'icons/iconLogin.png' %}" alt="Entrar" class="icon-img">
             </div>
             <p class="mt-2">Entrar</p>
         </a>
@@ -224,6 +224,7 @@
     border-radius: 50%;
     background-color: white;
     border: 2px solid #d48b94; /* Borda rosa */
+    padding: 50px; /* Espaço interno entre o ícone e a borda */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -234,8 +235,9 @@
 
 /* Estilo da imagem do ícone */
 .icon-img {
-    width: 40px; /* Tamanho do ícone */
-    height: 40px;
+    width: 70px; /* Tamanho do ícone */
+    height: 70px;
+    
 
 }
 
@@ -253,14 +255,14 @@
         height: 60px;
     }
     .icon-img {
-        width: 30px;
-        height: 30px;
+        width: 70px;
+        height: 70px;
     }
     .icon-card p {
         font-size: 0.9rem;
     }
 }
-  /* Estilo do card sobre */
+  /* Estilo do card "sobre" */
   .card.bg-primary {
     border: none;
     border-radius: 15px;
@@ -304,7 +306,7 @@
     transform: scale(1.1);
 }
 
-/* Container do ícone */
+/* Container do ícone informativo  */
 .icon-container {
     width: 80px;
     height: 80px;
