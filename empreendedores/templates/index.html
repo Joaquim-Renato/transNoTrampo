@@ -93,16 +93,32 @@
     <h2>O que você quer fazer primeiro?</h2>
 
      <!-- Botões com ícones -->
-     <div class="d-flex justify-content-center gap-3 mt-4">
-        <a href="cadastrar/" class="btn btn-secondary">
-            <i class="fas fa-plus-circle"></i> Seja um profissional
+     <div class="d-flex justify-content-center gap-4 mt-4">
+        <!-- Card para "Seja um profissional" -->
+        <a href="cadastrar/" class="icon-card">
+            <div class="icon-container" style="background-color: white;">
+                <img src="{% static 'icons/iconCadastro.png' %}" alt="Seja um profissional" class="icon-img">
+            </div>
+            <p class="mt-2">Cadastre-se</p>
         </a>
-        <a href="login/" class="btn btn-warning">
-            <i class="fas fa-sign-in-alt"></i> Entrar
+        
+        <!-- Card para "Entrar" -->
+        <a href="login/" class="icon-card">
+            <div class="icon-container" style="background-color: white;">
+                <img src="{% static 'icons/login.png' %}" alt="Entrar" class="icon-img">
+            </div>
+            <p class="mt-2">Entrar</p>
         </a>
-        <a href="empreendedores/" class="btn btn-primary">
-            <i class="fas fa-search"></i> Ver os serviços disponíveis
+
+        <!-- Card para "Ver serviços disponíveis" -->
+        <a href="empreendedores/" class="icon-card">
+            <div class="icon-container" style="background-color: white;">
+                <img src="{% static 'icons/buscar.png' %}" alt="Ver serviços disponíveis" class="icon-img">
+            </div>
+            <p class="mt-2">Serviços disponíveis</p>
         </a>
+    </div>
+</div>
        
     </div>
       <!-- Card Chamativo para a Página "Sobre" -->
@@ -186,7 +202,65 @@
     filter: invert(1); /* Garante que os ícones fiquem visíveis */
   }
 
-  /* Estilo do card chamativo */
+   /* Estilo dos cards de ícones */
+   .icon-card {
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.icon-card:hover {
+    transform: translateY(-5px); /* Efeito de levantar ao passar o mouse */
+}
+
+/* Container do ícone */
+.icon-container {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid #d48b94; /* Borda rosa */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.icon-container:hover {
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Sombra maior ao passar o mouse */
+}
+
+/* Estilo da imagem do ícone */
+.icon-img {
+    width: 40px; /* Tamanho do ícone */
+    height: 40px;
+
+}
+
+/* Texto abaixo do ícone */
+.icon-card p {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #8b5e63; /* Cor do texto */
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+    .icon-container {
+        width: 60px;
+        height: 60px;
+    }
+    .icon-img {
+        width: 30px;
+        height: 30px;
+    }
+    .icon-card p {
+        font-size: 0.9rem;
+    }
+}
+  /* Estilo do card sobre */
   .card.bg-primary {
     border: none;
     border-radius: 15px;
