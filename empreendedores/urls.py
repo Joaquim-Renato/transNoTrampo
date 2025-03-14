@@ -15,7 +15,8 @@ urlpatterns = [
     path("delete/<int:empreendedor_id>/", views.delete_empreendedor, name="delete_empreendedor"),
     path("sobre/", views.sobre, name="sobre"),
     path("recuperar-senha/", views.recuperar_senha, name="recuperar_senha"),
-    path("resetar-senha/<str:token>/", views.resetar_senha, name="resetar_senha"),
+    path("resetarSenha/<str:token>/", views.resetar_senha, name="resetar_senha"),
+    path('alterar-senha/<int:empreendedor_id>/', views.alterar_senha, name='alterar_senha'),
     path('social-auth/', include('social_django.urls', namespace='social-auth')),
  
 ]

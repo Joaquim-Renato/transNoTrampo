@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Perfil do Empreendedor</title>
+    <title>Editar Senha do Empreendedor</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles.css'%}">
     <link rel="icon" type="image/png" href="{% static 'favicon/editar.png' %}"/>
@@ -22,27 +22,20 @@
 </head>
 
 <body>
-    <div class="container mt-5">
-        <h2>Editar Perfil do Empreendedor</h2>
-        
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }} <!-- Exibe o formulário -->
-            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-            <br><br>
-            
-            <a href="{% url 'perfil_empreendedor' empreendedor.id %}" class="btn btn-danger">Cancelar</a>
+{% block content %}
+<div class="container">
+    <h1>Alterar Senha</h1>
 
-            <hr>
-
-        <!-- Link para Alterar Senha -->
-        <a href="{% url 'alterar_senha' empreendedor.id %}" class="btn btn-warning">Alterar Senha</a>
-    </div>
-        </form>
-        
- 
-       
-        
+    <!-- Formulário de Alteração de Senha -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form_senha.as_p }}
+        <button type="submit" class="btn btn-warning">Alterar Senha</button>
+        <br> <br>
+        <a href="{% url 'perfil_empreendedor' empreendedor.id %}" class="btn btn-danger">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
 </body>
 
 </html>

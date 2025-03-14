@@ -70,6 +70,9 @@ Acesse http://127.0.0.1:8000/admin
  python -m pip install Pillow
 ````
 
+## Para módulo social_django
+
+pip install social-auth-app-django
 
 
 # Sobre o codigo

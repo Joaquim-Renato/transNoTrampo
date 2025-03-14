@@ -8,7 +8,7 @@ from .utils import criptografia, verificar_senha
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
 from django.conf import settings
-
+from .alterarSenhaForm import AlterarSenhaForm  # Importa o forms da senha
 
 
 def cadastrar_empreendedor(request):
@@ -68,27 +68,36 @@ def perfil_empreendedor(request, empreendedor_id):
 
 def edit_empreendedor(request, empreendedor_id):
     empreendedor = get_object_or_404(Empreendedor, id=empreendedor_id)
-   
+
     if request.method == "POST":
         formulario = EmpreendedorEdicaoForm(request.POST, request.FILES, instance=empreendedor)
-        
         if formulario.is_valid():
-
-            senha = formulario.cleaned_data.get("senha")
-            if senha:
-                empreendedor.senha = criptografia(senha)
-
             formulario.save()
-
             messages.success(request, "Dados atualizados com sucesso!")
-            next_url = request.GET.get('next', 'perfil_empreendedor')
-            return redirect(next_url, empreendedor_id=empreendedor.id)
+            return redirect("perfil_empreendedor", empreendedor_id=empreendedor.id)
         else:
             messages.error(request, "Erro ao atualizar os dados.")
     else:
         formulario = EmpreendedorEdicaoForm(instance=empreendedor)
-    
+
     return render(request, 'editar.html', {'form': formulario, 'empreendedor': empreendedor})
+
+
+def alterar_senha(request, empreendedor_id):
+    empreendedor = get_object_or_404(Empreendedor, id=empreendedor_id)
+
+    if request.method == "POST":
+        form_senha = AlterarSenhaForm(request.POST, instance=empreendedor)
+        if form_senha.is_valid():
+            form_senha.save()
+            messages.success(request, "Senha alterada com sucesso!")
+            return redirect("perfil_empreendedor", empreendedor_id=empreendedor.id)
+        else:
+            messages.error(request, "Erro ao alterar a senha. Verifique os dados.")
+    else:
+        form_senha = AlterarSenhaForm(instance=empreendedor)
+
+    return render(request, "alterarSenha.html", {"form_senha": form_senha, "empreendedor": empreendedor})
 
 
 def delete_empreendedor(request, empreendedor_id):
