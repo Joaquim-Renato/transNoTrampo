@@ -17,8 +17,14 @@ class EmpreendedorForm(forms.ModelForm):
         widgets = {
             'senha': forms.PasswordInput(),
             'identidadegenero': forms.Select(attrs={'class': 'form-control'}),
+            'descricao': forms.Textarea(attrs={'placeholder': 'Fique a vontade para fazer uma descrição sobre você e serviços descrição aqui neste campo'}),
+            'cidade': forms.TextInput(attrs={'placeholder': 'Digite sua cidade'}),
+            'estado': forms.TextInput(attrs={'placeholder': 'Digite seu estado (ex: SP, RJ)'}),
+
             
         }
+    
+    
     def clean(self):
         cleaned_data = super().clean()
         senha = cleaned_data.get("senha")
