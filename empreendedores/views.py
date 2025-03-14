@@ -36,7 +36,8 @@ def login_view(request):
         if not email or not senha:
             messages.error(request, "Preencha todos os campos.")
             return render(request, "login.html")
-
+        
+             # Verifica se o usuário existe
         try:
             empreendedor = Empreendedor.objects.get(email=email)
             if verificar_senha(senha, empreendedor.senha):
