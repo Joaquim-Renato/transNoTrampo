@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CADASTRAR </title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles.css'%}">
-    <link rel="icon" type="image/png" href="{% static 'favicon/editar.png' %}"/>
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-    crossorigin="anonymous"
-/>
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"
-></script>
+    <link rel="icon" type="image/png" href="{% static 'favicon/editar.png' %}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
-  </head>
+</head>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">🌸Trans No Trampo</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -43,64 +39,86 @@
     </div>
 </nav>
 
-  <body style="background-color: #fdf7f7; ">
+<body style="background-color: #fdf7f7; ">
     <h1>Olá seja Bem vinde!</h1>
     <div class="container-fluid">
 
-   <h2>Formulário de Cadastro</h2>
-    
-   <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    
-    
-     <!-- Checkbox para aceitar os termos -->
-     <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="aceitarTermos">
-        <label class="form-check-label">
-            Eu li e aceito a <a href="#" data-bs-toggle="modal" data-bs-target="#modalTermos">Política de Privacidade</a>.
-        </label>
+        <h2>Formulário de Cadastro</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+
+            <!-- Checkbox para aceitar os termos -->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="aceitarTermos">
+                <label class="form-check-label">
+                    Eu li e aceito a <a href="#" data-bs-toggle="modal" data-bs-target="#modalTermos">Política de
+                        Privacidade</a>.
+                </label>
+            </div>
+
+            <button type="submit">Cadastrar</button>
+            <!-- Botão para abrir o modal -->
+            <br><br>
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#genderModal">
+                O que é identidade de gênero?
+            </button>
     </div>
+    </form>
 
-    <button type="submit">Cadastrar</button>
-     <!-- Botão para abrir o modal -->
-      <br><br>
-     <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#genderModal">
-        O que é identidade de gênero?
-    </button>
-</div>
-</form>
-
-<!-- Modal Identidade de Gênero -->
-<div class="modal fade" id="genderModal" tabindex="-1" aria-labelledby="genderModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="genderModalLabel">O que é identidade de gênero?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-            </div>
-            <div class="modal-body">
-                <p>
-                    Identidade de gênero é a forma como uma pessoa se reconhece e se define em relação ao gênero. 
-                    Isso pode ou não coincidir com o sexo que lhe foi atribuído ao nascer.  
-                    Cada pessoa vivencia sua identidade de maneira única, e há diversas formas de se identificar.  
-                </p>
-                <ul>
-                    <li><strong>Transmasculino</strong>: Pessoas que se identificam com a masculinidade, mas foram designadas outro gênero ao nascer.</li>
-                    <li><strong>Homem Transgênero</strong>: Homens cuja identidade de gênero não corresponde ao gênero que lhes foi atribuído ao nascer.</li>
-                    <li><strong>Travesti</strong>: Identidade de gênero historicamente enraizada na cultura latino-americana, que expressa vivências diversas da feminilidade.</li>
-                    <li><strong>Mulher Transgênero</strong>: Mulheres cuja identidade de gênero não corresponde ao gênero que lhes foi atribuído ao nascer.</li>
-                    <li><strong>Não Binário</strong>: Pessoas que não se identificam exclusivamente como homem ou mulher, podendo flutuar entre gêneros ou se reconhecer fora desse espectro.</li>
-                    <li><strong>Outro</strong>: Para pessoas cuja identidade de gênero não está contemplada nas categorias acima.</li>
-                </ul>
-                <p>Escolha a opção que melhor representa sua identidade. Caso tenha dúvidas, explore mais sobre cada uma delas para encontrar a que mais se alinha com você.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+    <!-- Modal Identidade de Gênero -->
+    <div class="modal fade" id="genderModal" tabindex="-1" aria-labelledby="genderModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="genderModalLabel">O que é identidade de gênero?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        O que é identidade de gênero?
+                        Identidade de gênero é a experiência íntima e pessoal de uma pessoa em relação ao seu próprio
+                        gênero, ou seja, como ela se reconhece e se define. Essa identidade pode ou não corresponder ao
+                        sexo que lhe foi atribuído ao nascer. Cada indivíduo vivencia sua identidade de gênero de
+                        maneira única, e há uma ampla diversidade de expressões e identidades dentro desse espectro.
+                    </p>
+                    <ul>
+                        <li><strong>Transmasculino</strong>: Pessoas que se identificam com a masculinidade, mas foram
+                            designadas um gênero diferente ao nascer (geralmente feminino). O termo abrange uma
+                            variedade de experiências e expressões de gênero dentro do espectro masculino.</li>
+                            <br>
+                        <li><strong>Homem Transgênero</strong>:Homens cuja identidade de gênero é masculina, mas que
+                            foram designados como outro gênero (geralmente feminino) ao nascer. A transição pode
+                            envolver aspectos sociais, médicos e/ou legais, mas não é um requisito para a identidade.
+                        </li>
+                        <li><strong>Travesti</strong>: Identidade de gênero profundamente enraizada na cultura
+                            latino-americana, que expressa uma vivência única da feminilidade, muitas vezes desafiando
+                            normas de gênero tradicionais. É uma identidade política e cultural, além de uma expressão
+                            de gênero.</li>
+                        <li><strong>Mulher Transgênero</strong>: Mulheres cuja identidade de gênero é feminina, mas que
+                            foram designadas como outro gênero (geralmente masculino) ao nascer. Como no caso dos homens
+                            trans, a transição pode variar e não é obrigatória para a validação da identidade..</li>
+                        <li><strong>Não Binário</strong>: Pessoas que não se identificam exclusivamente como homem ou
+                            mulher, podendo experienciar o gênero de forma fluida, como uma combinação de gêneros, ou
+                            fora do espectro binário completamente. Essa identidade é diversa e pode incluir termos como
+                            gênero fluido, agênero, bigênero, entre outros.</li>
+                        <li><strong>Outro</strong>: Termo inclusivo para pessoas cuja identidade de gênero não se
+                            encaixa nas categorias listadas acima ou que preferem não se definir por rótulos
+                            específicos. Essa opção reconhece a diversidade infinita das experiências de gênero.</li>
+                    </ul>
+                    <p><strong>Escolha a opção que melhor representa sua identidade.</strong>
+                        Caso tenha dúvidas, explore mais sobre cada uma delas para encontrar a que mais ressoa com sua
+                        experiência. Lembre-se de que a identidade de gênero é pessoal e única, e você tem o direito de
+                        se definir da maneira que se sentir mais confortável.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- Modal da Política de Privacidade -->
     <div class="modal fade" id="modalTermos" tabindex="-1" aria-labelledby="modalTermosLabel" aria-hidden="true">
@@ -113,51 +131,77 @@
                 <div class="modal-body">
                     <p>Política Privacidade <br>
                         A sua privacidade é importante para nós. <br>
-                        É política do Trans No Trampo respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site Trans No Trampo, e outros sites que possuímos e operamos.
+                        É política do Trans No Trampo respeitar a sua privacidade em relação a qualquer informação sua
+                        que possamos coletar no site Trans No Trampo, e outros sites que possuímos e operamos.
                         <br>
-                        Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. 
+                        Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um
+                        serviço.
                         <br>
-                        Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento. 
+                        Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento.
                         <br>
-                        Também informamos por que estamos coletando e como será usado.Apenas retemos as informações coletadas pelo tempo necessário para fornecer o serviço solicitado. 
+                        Também informamos por que estamos coletando e como será usado.Apenas retemos as informações
+                        coletadas pelo tempo necessário para fornecer o serviço solicitado.
                         <br>
-                        Quando armazenamos dados, protegemos dentro de meios comercialmente aceitáveis ​​para evitar perdas e roubos, bem como acesso, divulgação, cópia, uso ou modificação não autorizados.
+                        Quando armazenamos dados, protegemos dentro de meios comercialmente aceitáveis ​​para evitar
+                        perdas e roubos, bem como acesso, divulgação, cópia, uso ou modificação não autorizados.
                         <br>
-                        Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei.
+                        Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto
+                        quando exigido por lei.
                         <br>
-                        O nosso site pode ter links para sites externos que não são operados por nós. 
+                        O nosso site pode ter links para sites externos que não são operados por nós.
                         <br>
-                        Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade por suas respectivas políticas de privacidade.
+                        Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos
+                        aceitar responsabilidade por suas respectivas políticas de privacidade.
                         <br>
-                        Você é livre para recusar a nossa solicitação de informações pessoais, entendendo que talvez não possamos fornecer alguns dos serviços desejados.
+                        Você é livre para recusar a nossa solicitação de informações pessoais, entendendo que talvez não
+                        possamos fornecer alguns dos serviços desejados.
                         <br>
-                        O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de privacidade e informações pessoais. 
+                        O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de
+                        privacidade e informações pessoais.
                         <br>
-                        Se você tiver alguma dúvida sobre como lidamos com dados do usuário e informações pessoais, entre em contacto connosco.
+                        Se você tiver alguma dúvida sobre como lidamos com dados do usuário e informações pessoais,
+                        entre em contacto connosco.
                         <br>
-                        O serviço Google AdSense que usamos para veicular publicidade usa um cookie DoubleClick para veicular anúncios mais relevantes em toda a Web e limitar o número de vezes que um determinado anúncio é exibido para você.
+                        O serviço Google AdSense que usamos para veicular publicidade usa um cookie DoubleClick para
+                        veicular anúncios mais relevantes em toda a Web e limitar o número de vezes que um determinado
+                        anúncio é exibido para você.
                         <br>
-                        Para mais informações sobre o Google AdSense, consulte as FAQs oficiais sobre privacidade do Google AdSense.
+                        Para mais informações sobre o Google AdSense, consulte as FAQs oficiais sobre privacidade do
+                        Google AdSense.
                         <br>
-                        Utilizamos anúncios para compensar os custos de funcionamento deste site e fornecer financiamento para futuros desenvolvimentos. 
+                        Utilizamos anúncios para compensar os custos de funcionamento deste site e fornecer
+                        financiamento para futuros desenvolvimentos.
                         <br>
-                        Os cookies de publicidade comportamental usados ​​por este site foram projetados para garantir que você forneça os anúncios mais relevantes sempre que possível, rastreando anonimamente seus interesses e apresentando coisas semelhantes que possam ser do seu interesse.
+                        Os cookies de publicidade comportamental usados ​​por este site foram projetados para garantir
+                        que você forneça os anúncios mais relevantes sempre que possível, rastreando anonimamente seus
+                        interesses e apresentando coisas semelhantes que possam ser do seu interesse.
                         <br>
-                        Vários parceiros anunciam em nosso nome e os cookies de rastreamento de afiliados simplesmente nos permitem ver se nossos clientes acessaram o site através de um dos sites de nossos parceiros, para que possamos creditá-los adequadamente e, quando aplicável, permitir que nossos parceiros afiliados ofereçam qualquer promoção que pode fornecê-lo para fazer uma compra.
+                        Vários parceiros anunciam em nosso nome e os cookies de rastreamento de afiliados simplesmente
+                        nos permitem ver se nossos clientes acessaram o site através de um dos sites de nossos
+                        parceiros, para que possamos creditá-los adequadamente e, quando aplicável, permitir que nossos
+                        parceiros afiliados ofereçam qualquer promoção que pode fornecê-lo para fazer uma compra.
                         <br>
                         <strong>Compromisso do Usuário </strong>
                         <br>
-                        O usuário se compromete a fazer uso adequado dos conteúdos e da informação que o Trans No Trampo oferece no site e com caráter enunciativo, mas não limitativo:
+                        O usuário se compromete a fazer uso adequado dos conteúdos e da informação que o Trans No Trampo
+                        oferece no site e com caráter enunciativo, mas não limitativo:
                         <br>
                         A) Não se envolver em atividades que sejam ilegais ou contrárias à boa fé a à ordem pública;
                         <br>
-                        B) Não difundir propaganda ou conteúdo de natureza racista, xenofóbica, bbebbet ou azar, qualquer tipo de pornografia ilegal, de apologia ao terrorismo ou contra os direitos humanos;
+                        B) Não difundir propaganda ou conteúdo de natureza racista, xenofóbica, bbebbet ou azar,
+                        qualquer tipo de pornografia ilegal, de apologia ao terrorismo ou contra os direitos humanos;
                         <br>
-                        C) Não causar danos aos sistemas físicos (hardwares) e lógicos (softwares) do Trans No Trampo, de seus fornecedores ou terceiros, para introduzir ou disseminar vírus informáticos ou quaisquer outros sistemas de hardware ou software que sejam capazes de causar danos anteriormente mencionados.
+                        C) Não causar danos aos sistemas físicos (hardwares) e lógicos (softwares) do Trans No Trampo,
+                        de seus fornecedores ou terceiros, para introduzir ou disseminar vírus informáticos ou quaisquer
+                        outros sistemas de hardware ou software que sejam capazes de causar danos anteriormente
+                        mencionados.
                         <br>
-                        Mais informaçõesEsperemos que esteja esclarecido e, como mencionado anteriormente, se houver algo que você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que você usa em nosso site.
+                        Mais informaçõesEsperemos que esteja esclarecido e, como mencionado anteriormente, se houver
+                        algo que você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies
+                        ativados, caso interaja com um dos recursos que você usa em nosso site.
                         <br>
-                        Esta política é efetiva a partir de 18 February 2025 17:14</p>
+                        Esta política é efetiva a partir de 18 February 2025 17:14
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -165,52 +209,60 @@
             </div>
         </div>
     </div>
-<br>
-<div class="d-flex justify-content-center gap-3 mt-4">
-  <a href="{% url 'login' %}" class="btn btn-outline-dark">Logar</a>
-  <a href="{% url 'lista_empreendedores' %}" class="btn btn-outline-primary">Ver os serviços disponíveis</a>
-  <a href="/" class="btn btn-outline-danger">Voltar</a>
-</div>
-<br>
-<br><br>
+    <br>
+    <div class="d-flex justify-content-center gap-3 mt-4">
+        <a href="{% url 'login' %}" class="btn btn-outline-dark">Logar</a>
+        <a href="{% url 'lista_empreendedores' %}" class="btn btn-outline-primary">Ver os serviços disponíveis</a>
+        <a href="/" class="btn btn-outline-danger">Voltar</a>
+    </div>
+    <br>
+    <br><br>
 
 
-<footer>
-    <p>🌸 Criado com carinho para a comunidade 🌸</p>
-    <p class="footer-creditos">© 2024 Todos os direitos reservados.</p>
-</footer>
+    <footer>
+        <p>🌸 Criado com carinho para a comunidade 🌸</p>
+        <p class="footer-creditos">© 2024 Todos os direitos reservados.</p>
+    </footer>
 
 
-<script>
-    document.querySelector("form").addEventListener("submit", function(event) {
-        let checkbox = document.getElementById("aceitarTermos");
-        if (!checkbox.checked) {
-            alert("Você deve aceitar a Política de Privacidade para continuar.");
-            event.preventDefault(); // Impede o envio do formulário
-        }
-    });
-</script>
+    <script>
+        document.querySelector("form").addEventListener("submit", function (event) {
+            let checkbox = document.getElementById("aceitarTermos");
+            if (!checkbox.checked) {
+                alert("Você deve aceitar a Política de Privacidade para continuar.");
+                event.preventDefault(); // Impede o envio do formulário
+            }
+        });
+    </script>
 
-  </body>
+</body>
+
 </html>
 
 <style>
     footer {
-        background-color: white; 
+        background-color: white;
         color: #d48b94;
-        text-align: center; /* Centraliza o conteúdo */
-        padding: 1px; /* Espaçamento interno */
-        font-size: 1.3rem; /* Tamanho padrão para o texto */
-        border-top: 1px solid #bf717d; /* Linha de separação */
-        width: 100%; /* Faz o footer ocupar toda a largura */
-        box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave superior */
+        text-align: center;
+        /* Centraliza o conteúdo */
+        padding: 1px;
+        /* Espaçamento interno */
+        font-size: 1.3rem;
+        /* Tamanho padrão para o texto */
+        border-top: 1px solid #bf717d;
+        /* Linha de separação */
+        width: 100%;
+        /* Faz o footer ocupar toda a largura */
+        box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
+        /* Sombra suave superior */
         position: relative;
     }
-    
+
     /* Texto menor para créditos */
     .footer-creditos {
         font-size: 0.9rem;
         margin-top: 10px;
-        opacity: 0.8; /* Levemente mais opaco */
+        opacity: 0.8;
+        /* Levemente mais opaco */
     }
 </style>

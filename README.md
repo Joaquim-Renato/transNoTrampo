@@ -72,8 +72,9 @@ Acesse http://127.0.0.1:8000/admin
 
 ## Para módulo social_django
 
+````cmd
 pip install social-auth-app-django
-
+```` 
 
 # Sobre o codigo
 
